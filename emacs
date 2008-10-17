@@ -22,30 +22,6 @@
 (require 'ido)
 (ido-mode t)
 
-;; Load cedet
-(load-file "~/.emacs.d/cedet/common/cedet.el")
-
-; Enabling various SEMANTIC minor modes. See semantic/INSTALL for more ideas.
-; Select one of the following:
-; * This enables the database and idle reparse engines
-; (semantic-load-enable-minimum-features)
-; * This enables some tools useful for coding, such as summary mode
-;   imenu support, and the semantic navigator
-(semantic-load-enable-code-helpers)
-; * This enables even more coding tools such as the nascent intellisense mode
-;   decoration mode, and stickyfunc mode (plus regular code helpers)
-; (semantic-load-enable-guady-code-helpers)
-; * This turns on which-func support (Plus all other code helpers)
-; (semantic-load-enable-excessive-code-helpers)
-; * This turns on modes that aid in grammar writing and semantic tool
-;   development.  It does not enable any other features such as code
-;   helpers above.
-; (semantic-load-enable-semantic-debugging-helpers)
-
-;; Load ecb
-(add-to-list 'load-path "~/.emacs.d/ecb")
-(require 'ecb)
-
 ;; Load slime and swank-clojure
 (add-to-list 'load-path "~/.emacs.d/slime")
 (require 'slime-autoloads)
@@ -80,10 +56,7 @@
     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 ;; nxml-mode
-(add-to-list 'load-path "~/.emacs.d/nxml-mode")
-(set 'nxml-path (expand-file-name "~/.emacs.d/nxml-mode/"))
-(load (concat nxml-path "rng-auto.el"))
-(require 'xml-fragment)
+(require 'nxml-mode)
 
 (add-to-list 'auto-mode-alist
 	(cons (concat "\\." (regexp-opt '("xml" "xsd" "sch" "rng" "xslt" "svg" "rss" "wsdl" "wsdd" "xhtml") t) "\\'")
@@ -96,11 +69,6 @@
 		magic-mode-alist))
 		
 (add-hook 'nxml-mode-hook 'xml-fragment-mode-on-maybe)
-
-; Use custom validator for xhtml transitional
-(setq rng-schema-locating-files
-	(append rng-schema-locating-files-default
-		'("~/.emacs.d/custom-nxml-schema/schemas.xml")))
 
 (setq nxml-slash-auto-complete-flag t)
 (setq nxml-bind-meta-tab-to-complete-flag t)
@@ -210,6 +178,30 @@
   (delete-file "/tmp/tidy-errs")
   (message "buffer tidy'ed"))
 (global-set-key (kbd "C-x t") 'tidy-buffer)
+
+;; Load cedet
+(load-file "~/.emacs.d/cedet/common/cedet.el")
+
+; Enabling various SEMANTIC minor modes. See semantic/INSTALL for more ideas.
+; Select one of the following:
+; * This enables the database and idle reparse engines
+; (semantic-load-enable-minimum-features)
+; * This enables some tools useful for coding, such as summary mode
+;   imenu support, and the semantic navigator
+(semantic-load-enable-code-helpers)
+; * This enables even more coding tools such as the nascent intellisense mode
+;   decoration mode, and stickyfunc mode (plus regular code helpers)
+; (semantic-load-enable-guady-code-helpers)
+; * This turns on which-func support (Plus all other code helpers)
+; (semantic-load-enable-excessive-code-helpers)
+; * This turns on modes that aid in grammar writing and semantic tool
+;   development.  It does not enable any other features such as code
+;   helpers above.
+; (semantic-load-enable-semantic-debugging-helpers)
+
+;; Load ecb
+(add-to-list 'load-path "~/.emacs.d/ecb")
+(require 'ecb)
 
 ;; Custom generated
 (custom-set-variables
