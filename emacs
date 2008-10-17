@@ -67,8 +67,6 @@
 (setq magic-mode-alist
 	(cons '("<＼＼?xml " . nxml-mode)
 		magic-mode-alist))
-		
-(add-hook 'nxml-mode-hook 'xml-fragment-mode-on-maybe)
 
 (setq nxml-slash-auto-complete-flag t)
 (setq nxml-bind-meta-tab-to-complete-flag t)
