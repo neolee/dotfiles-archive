@@ -112,20 +112,21 @@ zmodload zsh/terminfo zsh/termcap
 ## figure out what the PATH should be
 typeset -U common_paths
 common_paths=(
-    ${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
-    /bin /sbin /usr/bin /usr/sbin		# good places to look
-    /usr/local/bin /usr/local/sbin		# freebsd
-    # /usr/X11R6/bin					# x11
-    # /usr/pkg/bin /usr/pkg/sbin		# ???
-    # /usr/ucb							# solaris - bsd
-    # /usr/sfw/bin /usr/sfw/sbin		# solaris - sun free-ware
-    # /usr/xpg4/bin /usr/xpg6/bin		# solaris - x/open portability guide
-    # /opt/local/bin /opt/local/sbin /opt/SUNWspro/bin	# solaris
-    # /usr/ccs/bin						# solaris - c compilation system
-    # /usr/platform/$(uname -i)/sbin	# solaris - hardware dependent
-    # /var/qmail/bin					# qmail - uncomment if desired
-    /usr/games							# fun stuff
-    ${HOME}/bin							# personal stuff
+    ${path} ${=$(command -p getconf PATH)//:/ }		# what the system thinks PATH should be
+    /bin /sbin /usr/bin /usr/sbin									# good places to look
+    /usr/local/bin /usr/local/sbin								# freebsd
+    # /usr/X11R6/bin															# x11
+    # /usr/pkg/bin /usr/pkg/sbin									# ???
+    # /usr/ucb																		# solaris - bsd
+    # /usr/sfw/bin /usr/sfw/sbin									# solaris - sun free-ware
+    # /usr/xpg4/bin /usr/xpg6/bin									# solaris - x/open portability guide
+    /opt/local/bin /opt/local/sbin              	# solaris / macports
+    # /opt/SUNWspro/bin	                        	# solaris
+    # /usr/ccs/bin																# solaris - c compilation system
+    # /usr/platform/$(uname -i)/sbin	        		# solaris - hardware dependent
+    # /var/qmail/bin															# qmail - uncomment if desired
+    /usr/games																		# fun stuff
+    ${HOME}/bin																		# personal stuff
 )
 
 unset PATH_tmp
