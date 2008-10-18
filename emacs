@@ -26,13 +26,6 @@
 (add-to-list 'load-path "~/.emacs.d/slime")
 (require 'slime-autoloads)
 
-(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(require 'clojure-auto)
-
-(add-to-list 'load-path "~/.emacs.d/swank-clojure")
-(setq swank-clojure-jar-path (expand-file-name "~/Code/Clojure/clojure/clojure.jar"))
-(require 'swank-clojure-autoload)
-
 (setq slime-lisp-implementations `(
 	(sbcl ("/opt/local/bin/sbcl"))
 	; (clisp ("/opt/local/bin/clisp"))
@@ -46,6 +39,15 @@
 
 (eval-after-load "slime"
 	'(slime-setup '(slime-fancy slime-banner)))
+
+(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(require 'clojure-auto)
+
+(add-to-list 'load-path "~/.emacs.d/swank-clojure")
+(require 'swank-clojure-autoload)       
+(swank-clojure-config
+	(setq swank-clojure-jar-path (expand-file-name "~/Code/Clojure/clojure/clojure.jar"))
+  (setq swank-clojure-extra-classpaths (list (expand-file-name "~/Code/Clojure/clojure-contrib/src"))))
 
 ;; yaml-mode
 (require 'yaml-mode)
@@ -201,6 +203,9 @@
 (add-to-list 'load-path "~/.emacs.d/ecb")
 (require 'ecb)
 
+;; Launch ecb by default
+; (ecb-activate)
+
 ;; Custom generated
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -227,6 +232,3 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
-
-;; Launch ecb by default
-(ecb-activate)
