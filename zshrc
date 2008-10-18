@@ -5,7 +5,6 @@ export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 export SVN_EDITOR="/usr/bin/e -w"
 export RI="--format ansi -T"
 export MITSCHEME_LIBRARY_PATH="/opt/local/lib/mit-scheme"
-export WEBKIT="/Users/neo/Code/WebKit"
 
 ## locales hacking, used only on special issue
 export LC_ALL="C"
@@ -43,7 +42,7 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ':completion:::::' completer _complete _approximate
 zstyle ':completion:*:approximate:*' max-errors 2
-zstyle :compinstall filename '/home/james/.zshrc'
+zstyle :compinstall filename '/Users/neo/.zshrc'
 zstyle ':completion:*' completer _complete _prefix
 zstyle ':completion::prefix-1:*' completer _complete
 zstyle ':completion:incremental:*' completer _complete _correct
