@@ -1,8 +1,9 @@
 ;; We need mouse wheel!
 (mouse-wheel-mode t)
 (setq scroll-step 1)
-;; And I hate auto backing up
+;; And I hate auto save and auto backup
 (setq make-backup-files nil) 
+(setq auto-save-default nil)
 
 ;; My elips load-path
 (add-to-list 'load-path "~/.emacs.d/")
