@@ -65,12 +65,15 @@
 ;; Keyboard customization for slime
 (eval-after-load 'slime
 	'(progn
-		(define-key slime-mode-map (kbd "[") 'insert-parentheses)
-		(define-key slime-mode-map (kbd "]") 'move-past-close-and-reindent)
-		(define-key slime-mode-map (kbd "(") (lambda () (interactive) (insert "[")))
-		(define-key slime-mode-map (kbd ")") (lambda () (interactive) (insert "]")))
-		(define-key slime-mode-map [(?\()] 'paredit-open-list)
-		(define-key slime-mode-map [(?\))] 'paredit-close-list)
+		; * Using built-in functions or paredit-mode functions
+		; (define-key slime-mode-map (kbd "[") 'insert-parentheses)
+		; (define-key slime-mode-map (kbd "]") 'move-past-close-and-reindent)
+		; (define-key slime-mode-map (kbd "(") (lambda () (interactive) (insert "[")))
+		; (define-key slime-mode-map (kbd ")") (lambda () (interactive) (insert "]")))
+		(define-key slime-mode-map (kbd "[") 'paredit-open-parenthesis)
+		(define-key slime-mode-map (kbd "]") 'paredit-close-parenthesis-and-newline)
+		(define-key slime-mode-map (kbd "(") 'paredit-open-bracket)
+		(define-key slime-mode-map (kbd ")") 'paredit-close-bracket)
 		(define-key slime-mode-map [(return)] 'paredit-newline)
 		(define-key slime-mode-map [(control ?\=)] (lambda () (interactive) (insert "(")))
 		(define-key slime-mode-map [(control ?\\)] (lambda () (interactive) (insert ")")))
