@@ -40,6 +40,9 @@
 (eval-after-load "slime"
 	'(slime-setup '(slime-fancy slime-banner)))
 
+(global-set-key (kbd "<f5>") 'slime-selector)
+
+; Load clojure stuff
 (add-to-list 'load-path "~/.emacs.d/clojure-mode")
 (require 'clojure-auto)
 
@@ -49,7 +52,37 @@
 	(setq swank-clojure-jar-path (expand-file-name "~/Code/Clojure/clojure/clojure.jar"))
   (setq swank-clojure-extra-classpaths (list (expand-file-name "~/Code/Clojure/clojure-contrib/src"))))
 
-;; yaml-mode
+;; Load paredit-mode
+(autoload 'paredit-mode "paredit" 
+	"Minor mode for pseudo-structurally editing Lisp code." t)
+	
+(mapc 
+	(lambda (mode)
+		(let ((hook (intern (concat (symbol-name mode) "-mode-hook"))))
+			(add-hook hook (lambda () (paredit-mode +1)))))
+	'(emacs-lisp lisp inferior-lisp))
+
+;; Keyboard customization for slime
+(eval-after-load 'slime
+	'(progn
+		(define-key slime-mode-map (kbd "[") 'insert-parentheses)
+		(define-key slime-mode-map (kbd "]") 'move-past-close-and-reindent)
+		(define-key slime-mode-map (kbd "(") (lambda () (interactive) (insert "[")))
+		(define-key slime-mode-map (kbd ")") (lambda () (interactive) (insert "]")))
+		(define-key slime-mode-map [(?\()] 'paredit-open-list)
+		(define-key slime-mode-map [(?\))] 'paredit-close-list)
+		(define-key slime-mode-map [(return)] 'paredit-newline)
+		(define-key slime-mode-map [(control ?\=)] (lambda () (interactive) (insert "(")))
+		(define-key slime-mode-map [(control ?\\)] (lambda () (interactive) (insert ")")))
+		(define-key slime-mode-map (kbd "C-t") 'transpose-sexps)
+		(define-key slime-mode-map (kbd "C-M-t") 'transpose-chars)
+		(define-key slime-mode-map (kbd "C-b") 'backward-sexp)
+		(define-key slime-mode-map (kbd "C-M-b") 'backward-char)
+		(define-key slime-mode-map (kbd "C-f") 'forward-sexp)
+		(define-key slime-mode-map (kbd "C-M-f") 'forward-char)
+		))
+
+;; Load yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
@@ -57,7 +90,7 @@
   '(lambda ()
     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;; nxml-mode
+;; Load nxml-mode
 (require 'nxml-mode)
 
 (add-to-list 'auto-mode-alist
