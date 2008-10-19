@@ -1,9 +1,27 @@
 ;; We need mouse wheel!
 (mouse-wheel-mode t)
 (setq scroll-step 1)
-;; And I hate auto save and auto backup
-(setq make-backup-files nil) 
-(setq auto-save-default nil)
+;; I hate auto save and auto backup files scattered all over the file system
+;; so we turn them off...
+; (setq make-backup-files nil)
+; (setq auto-save-default nil)
+;; ... or make them all in ONE place
+;; autosave files (ie #foo#)
+(defvar autosave-dir "~/.emacs.d/.auto-save-files/")
+
+(defun auto-save-file-name-p (filename)
+  (string-match "^#.*#$" (file-name-nondirectory filename)))
+
+(defun make-auto-save-file-name ()
+  (concat autosave-dir
+    (if buffer-file-name
+      (concat "#" (file-name-nondirectory buffer-file-name) "#")
+      (expand-file-name
+        (concat "#%" (buffer-name) "#")))))
+;; backup files (ie foo~) - backup-directory-alist list contains regexp=>directory mappings
+;; filenames matching a regexp are backed up in the corresponding directory
+(defvar backup-dir "~/.emacs.d/.backup-files/")
+(setq backup-directory-alist (list (cons "." backup-dir)))
 
 ;; My elips load-path
 (add-to-list 'load-path "~/.emacs.d/")
