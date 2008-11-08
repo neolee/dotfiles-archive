@@ -269,6 +269,12 @@
 ;   helpers above.
 ; (semantic-load-enable-semantic-debugging-helpers)
 
+;; Load elib
+(add-to-list 'load-path "~/.emacs.d/elib")
+;; Load jdee
+(add-to-list 'load-path "~/.emacs.d/jde/lisp")
+(require 'jde)
+
 ;; Load ecb
 (add-to-list 'load-path "~/.emacs.d/ecb")
 (require 'ecb)
@@ -291,6 +297,9 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-tree-expand-symbol-before t)
  '(ecb-wget-setup (quote ("Please_add_wget_to_your_path_or_set_the_fullpath_to_wget" . other)))
+ '(jde-global-classpath (quote ("/Users/neo/Code/Clojure/clojure/classes" "/Users/neo/Code/Clojure/clojure/src/clj" ".")))
+ '(jde-jdk (quote ("1.5.0")))
+ '(jde-jdk-registry (quote (("1.4.2" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.4") ("1.5.0" . "/System/Library/Frameworks/JavaVM.framework") ("1.6.0" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6"))))
  '(paren-match-face (quote paren-face-match-light))
  '(paren-sexp-mode t)
  '(rng-nxml-auto-validate-flag nil)
