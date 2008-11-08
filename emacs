@@ -7,6 +7,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (mouse-avoidance-mode 'cat-and-mouse)
 
+;; Loading color-theme
+; (add-to-list 'load-path "~/.emacs.d/color-theme")
+
 ;; I hate auto save and auto backup files scattered all over the file system
 ;; so we turn them off...
 ; (setq make-backup-files nil)
@@ -280,7 +283,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(case-fold-search nil)
- '(ecb-layout-name "single")
+ '(ecb-layout-name "oasis")
  '(ecb-options-version "2.33beta2")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-show-sources-in-directories-buffer (quote ("left7" "left13" "left14" "left15" "single")))

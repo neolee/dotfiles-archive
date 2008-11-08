@@ -7,11 +7,13 @@ export RI="--format ansi -T"
 export MITSCHEME_LIBRARY_PATH="/opt/local/lib/mit-scheme"
 
 ## locales hacking, used only on special issue
-export LC_ALL="C"
+# export LC_ALL="C"
 
 ## customized command alias
 alias qlf='qlmanage -p "$@" >& /dev/null'
 alias flushdns='dscacheutil -flushcache'
+
+alias grep='grep --color'
 
 alias rm='rm -i'
 alias ls='ls -Gw'
