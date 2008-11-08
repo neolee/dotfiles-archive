@@ -2,6 +2,11 @@
 (mouse-wheel-mode t)
 (setq scroll-step 1)
 
+;; Some tweaks
+(setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(mouse-avoidance-mode 'cat-and-mouse)
+
 ;; I hate auto save and auto backup files scattered all over the file system
 ;; so we turn them off...
 ; (setq make-backup-files nil)
