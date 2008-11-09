@@ -148,9 +148,9 @@
 
 ;; Load emacs-ruby, emacs-rails and deps
 (add-to-list 'load-path "~/.emacs.d/ruby-mode")
+(require 'ruby-mode)
 
 (autoload 'ruby-mode "ruby-mode" "Ruby editing mode." t)
-
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
@@ -162,8 +162,6 @@
 					(untabify (point-min) (point-max))
 					(delete-trailing-whitespace)
 				)))
-		(imenu-add-to-menubar "IMENU")
-		; Not sure if this line is 100% right but it works!
 		(define-key ruby-mode-map "\C-m" 'newline-and-indent)
 		(set (make-local-variable 'indent-tabs-mode) 'nil)
 		(set (make-local-variable 'tab-width) 2)
@@ -180,8 +178,10 @@
 
 (autoload 'rubydb "rubydb3x" "Ruby debugger" t)
 
-(require 'find-recursive) 
-(require 'snippet)
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/yasnippet/snippets")
 
 (add-to-list 'load-path "~/.emacs.d/rhtml")
 (require 'rhtml-mode)
