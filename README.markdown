@@ -12,12 +12,14 @@ My Emacs Modes
 7. yaml-mode: [YAML](http://yaml-mode.clouder.jp/)
 8. nxml-mode: [nXML](http://www.thaiopensource.com/nxml-mode/) *included in Emacs 23*
 9. emacs-ruby: [Ruby](http://www.emacswiki.org/cgi-bin/wiki/RubyMode) *included in Ruby src*
-10. ri-emacs: [Ri for Emacs](http://rubyforge.org/projects/ri-emacs/)
-11. rhtml-mode: [RHTML modded](http://www.blik.it/2007/3/22/better-rhtml-mode-for-emacs)
-12. emacs-rails: [Ruby on Rails](http://rubyforge.org/projects/emacs-rails/)
-13. rcodetool: [rcodetools](http://eigenclass.org/hiki/rcodetools)
-14. markdown-mode: [MarkDown](http://jblevins.org/projects/markdown-mode/)
-15. dedet: [Collection of Emacs Development Environment Tools](http://cedet.sourceforge.net/)
-16. ecb: [Emacs Code Browser](http://ecb.sourceforge.net/)
+10. yasnippet: [Yet Another Snippet extension for Emacs](http://code.google.com/p/yasnippet/)
+11. ri-emacs: [Ri for Emacs](http://rubyforge.org/projects/ri-emacs/)
+12. rhtml-mode: [RHTML modded](http://www.blik.it/2007/3/22/better-rhtml-mode-for-emacs)
+13. emacs-rails: [Ruby on Rails](http://rubyforge.org/projects/emacs-rails/)
+14. rcodetool: [rcodetools](http://eigenclass.org/hiki/rcodetools)
+15. markdown-mode: [MarkDown](http://jblevins.org/projects/markdown-mode/)
+16. cedet: [Collection of Emacs Development Environment Tools](http://cedet.sourceforge.net/)
+17. jdee: [Java Development Environment for Emacs](http://jdee.sourceforge.net/)
+18. ecb: [Emacs Code Browser](http://ecb.sourceforge.net/)
 
 NOTE: For almost any Emacs add-on, use their newest code from cvs/svn/git repositories ever!
