@@ -41,6 +41,9 @@
 ;; My elisp load-path
 (add-to-list 'load-path "~/.emacs.d/")
 
+;; Load git
+(require 'git)
+
 ;; And mmm everywhere
 (add-to-list 'load-path "~/.emacs.d/mmm-mode/")
 (setq mmm-global-mode 'maybe)
