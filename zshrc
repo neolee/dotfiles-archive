@@ -219,7 +219,7 @@ cdmkdir () {
 
 fortune () {
 	## include all fortunes in the database
-	command fortune -a ${@} /usr/share/games/fortune
+	command fortune -a ${@} /opt/local/share/games/fortune
 }
 
 shellname () {
