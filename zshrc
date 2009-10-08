@@ -8,6 +8,7 @@ export MITSCHEME_LIBRARY_PATH="/opt/local/lib/mit-scheme"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
+export LC_ALL="en_US.UTF-8"
 
 ## customized command alias
 alias qlf='qlmanage -p "$@" >& /dev/null'
