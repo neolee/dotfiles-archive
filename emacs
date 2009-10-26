@@ -1,5 +1,4 @@
 ;; We need mouse wheel!
-(mouse-wheel-mode t)
 (setq scroll-step 1)
 
 ;; Some tweaks
@@ -64,7 +63,8 @@
 (require 'slime-autoloads)
 
 (setq slime-lisp-implementations `(
-	(sbcl ("/opt/local/bin/sbcl"))
+	(sbcl ("/usr/local/bin/sbcl"))
+	; (sbcl ("/opt/local/bin/sbcl"))
 	; (clisp ("/opt/local/bin/clisp"))
 	))
 
@@ -81,7 +81,7 @@
 
 ; Load clojure stuff
 (add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(require 'clojure-auto)
+(require 'clojure-mode)
 
 (add-to-list 'load-path "~/.emacs.d/swank-clojure")
 (require 'swank-clojure-autoload)       
@@ -293,7 +293,7 @@
   ;; If there is more than one, they won't work right.
  '(case-fold-search nil)
  '(ecb-layout-name "oasis")
- '(ecb-options-version "2.33beta2")
+ '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-show-sources-in-directories-buffer (quote ("left7" "left13" "left14" "left15" "single")))
  '(ecb-source-path (quote ("~/Code")))
