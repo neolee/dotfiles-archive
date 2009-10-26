@@ -58,9 +58,18 @@
 (require 'ido)
 (ido-mode t)
 
+; Load clojure stuff
+(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(require 'clojure-mode)
+
+;; The line above can load slime correctly so comment the following
+
 ;; Load slime and swank-clojure
-(add-to-list 'load-path "~/.emacs.d/slime")
-(require 'slime-autoloads)
+; (add-to-list 'load-path "~/.emacs.d/slime")
+; (require 'slime-autoloads)
+
+;; Initiate clojure environment
+(clojure-slime-config "/Users/neo/.emacs.d")
 
 (setq slime-lisp-implementations `(
 	(sbcl ("/usr/local/bin/sbcl"))
@@ -78,16 +87,6 @@
 	'(slime-setup '(slime-fancy slime-banner)))
 
 (global-set-key (kbd "<f5>") 'slime-selector)
-
-; Load clojure stuff
-(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(require 'clojure-mode)
-
-(add-to-list 'load-path "~/.emacs.d/swank-clojure")
-(require 'swank-clojure-autoload)       
-(swank-clojure-config
-	(setq swank-clojure-jar-path (expand-file-name "~/Code/Clojure/clojure/clojure.jar"))
-  (setq swank-clojure-extra-classpaths (list (expand-file-name "~/Code/Clojure/clojure-contrib/src"))))
 
 ;; Load paredit-mode
 (autoload 'paredit-mode "paredit" 
