@@ -8,6 +8,10 @@ export RI="--format ansi -T"
 export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
 export PATH=$PATH:$JRUBY_HOME/bin
 
+export GOROOT="/Users/neo/Code/Go/Home"
+export GOBIN="$GOROOT/bin"
+export PATH=$PATH:$GOBIN
+
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
 export LC_ALL="en_US.UTF-8"
