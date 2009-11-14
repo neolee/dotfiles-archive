@@ -4,7 +4,9 @@
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 export SVN_EDITOR="/usr/bin/e -w"
 export RI="--format ansi -T"
-export MITSCHEME_LIBRARY_PATH="/opt/local/lib/mit-scheme"
+
+export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
+export PATH=$PATH:$JRUBY_HOME/bin
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
