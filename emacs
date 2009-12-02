@@ -118,29 +118,31 @@
 		(define-key slime-mode-map (kbd "C-j") 'newline)
 		(define-key slime-mode-map (kbd "\"") 'paredit-doublequote)
 		(define-key slime-mode-map (kbd "\\") 'paredit-backslash)
-
-		(define-key slime-mode-map (kbd "C-h") 'backward-sexp)
+		
 		(define-key slime-mode-map (kbd "C-t") 'transpose-sexps)
 		(define-key slime-mode-map (kbd "C-M-t") 'transpose-chars)
+		
 		(define-key slime-mode-map (kbd "C-b") 'backward-sexp)
 		(define-key slime-mode-map (kbd "C-M-b") 'backward-char)
 		(define-key slime-mode-map (kbd "C-f") 'forward-sexp)
 		(define-key slime-mode-map (kbd "C-M-f") 'forward-char)
-
-		(define-key slime-mode-map (kbd "C-n") 'forward-sexp)
+		(define-key slime-mode-map (kbd "C-n") 'down-list)
+		(define-key slime-mode-map (kbd "C-M-n") 'next-line)
+		(define-key slime-mode-map (kbd "C-p") 'backward-up-list)
+		(define-key slime-mode-map (kbd "C-M-p") 'previous-line)
+		
 		(define-key slime-mode-map (kbd "C-k") 'kill-sexp)
 		(define-key slime-mode-map (kbd "C-M-k") 'paredit-kill)
+		
 		(define-key slime-mode-map (kbd "C-'") 'paredit-splice-sexp)
 		(define-key slime-mode-map (kbd "C-M-l") 'paredit-recentre-on-sexp)
 		(define-key slime-mode-map (kbd "C-,") 'paredit-backward-slurp-sexp)
 		(define-key slime-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
 		(define-key slime-mode-map (kbd "C-<") 'paredit-backward-barf-sexp)
 		(define-key slime-mode-map (kbd "C->") 'paredit-forward-barf-sexp)
-		(define-key slime-mode-map (kbd "C-/") 'backward-up-list)
-		(define-key slime-mode-map (kbd "C-\\") 'down-list)
+		
 		(define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
 		(define-key slime-mode-map (kbd "C-c TAB") 'slime-complete-form)
-		(define-key global-map (kbd "<f12>") 'slime-selector)
 		))
 
 ;; Load yaml-mode
@@ -295,13 +297,13 @@
 
 ;; Load elib
 (add-to-list 'load-path "~/.emacs.d/elib")
-;; Load jdee
+;; Load jde
 (add-to-list 'load-path "~/.emacs.d/jde/lisp")
-(require 'jde)
+; (require 'jde)
 
 ;; Load ecb
 (add-to-list 'load-path "~/.emacs.d/ecb")
-(require 'ecb)
+; (require 'ecb)
 
 ;; Launch ecb by default
 ; (ecb-activate)
