@@ -58,6 +58,17 @@
 (require 'ido)
 (ido-mode t)
 
+;; Enable w3m
+(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m")
+(if window-system
+	(require 'w3m-load))
+
+(setq browse-url-browser-function '(
+	("hyperspec" . w3m-browse-url)
+	("HyperSpec" . w3m-browse-url)
+	("." . browse-url-default-macosx-browser)
+	))
+
 ; Load clojure stuff
 (add-to-list 'load-path "~/.emacs.d/clojure-mode")
 (require 'clojure-mode)
@@ -97,6 +108,19 @@
 		(let ((hook (intern (concat (symbol-name mode) "-mode-hook"))))
 			(add-hook hook (lambda () (paredit-mode +1)))))
 	'(emacs-lisp lisp inferior-lisp))
+
+(setq 
+	common-lisp-hyperspec-root "file:///Users/neo/Code/Lisp/clhs/HyperSpec/"
+	slime-complete-symbol-function 'slime-fuzzy-complete-symbol
+	; slime-startup-animation nil
+	slime-enable-evaluate-in-emacs t
+	slime-log-events t
+	slime-outline-mode-in-events-buffer nil
+	slime-repl-return-behaviour :send-only-if-after-complete
+	slime-autodoc-use-multiline-p t
+	slime-highlight-compiler-notes t
+	slime-fuzzy-completion-in-place nil
+	)
 
 ;; Keyboard customization for slime
 (eval-after-load 'slime
@@ -299,11 +323,11 @@
 (add-to-list 'load-path "~/.emacs.d/elib")
 ;; Load jde
 (add-to-list 'load-path "~/.emacs.d/jde/lisp")
-; (require 'jde)
+(require 'jde)
 
 ;; Load ecb
 (add-to-list 'load-path "~/.emacs.d/ecb")
-; (require 'ecb)
+(require 'ecb)
 
 ;; Launch ecb by default
 ; (ecb-activate)
@@ -330,7 +354,11 @@
  '(paren-sexp-mode t)
  '(rng-nxml-auto-validate-flag nil)
  '(semanticdb-default-save-directory "~/.emacs.d/semanticdb")
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(w3m-default-coding-system (quote utf-8))
+ '(w3m-file-coding-system (quote utf-8))
+ '(w3m-file-name-coding-system (quote utf-8))
+ '(w3m-show-decoded-url (quote (("\\`http://\\(?:[^./?#]+\\.\\)*wikipedia\\.org/" . utf-8) ("\\`http://\\(?:[^./?#]+\\.\\)*nikkei\\.co\\.jp/") ("\\`http://\\(?:[^./?#]+\\.\\)*hatena\\.ne\\.jp/" . utf-8) ("\\`http://\\(?:[^./?#]+\\.\\)*ohmynews\\.co\\.jp/" . utf-8) (t . t)))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
