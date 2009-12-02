@@ -62,14 +62,14 @@
 (add-to-list 'load-path "~/.emacs.d/clojure-mode")
 (require 'clojure-mode)
 
+;; Initiate clojure environment
+(clojure-slime-config "/Users/neo/.emacs.d")
+
 ;; The line above can load slime correctly so comment the following
 
 ;; Load slime and swank-clojure
 ; (add-to-list 'load-path "~/.emacs.d/slime")
 ; (require 'slime-autoloads)
-
-;; Initiate clojure environment
-(clojure-slime-config "/Users/neo/.emacs.d")
 
 (setq slime-lisp-implementations `(
 	(sbcl ("/usr/local/bin/sbcl"))
@@ -110,15 +110,37 @@
 		(define-key slime-mode-map (kbd "]") 'paredit-close-parenthesis-and-newline)
 		(define-key slime-mode-map (kbd "(") 'paredit-open-bracket)
 		(define-key slime-mode-map (kbd ")") 'paredit-close-bracket)
-		(define-key slime-mode-map [(return)] 'paredit-newline)
-		(define-key slime-mode-map [(control ?\=)] (lambda () (interactive) (insert "(")))
-		(define-key slime-mode-map [(control ?\\)] (lambda () (interactive) (insert ")")))
+		(define-key slime-mode-map [(control ?\-)] (lambda () (interactive) (insert "(")))
+		(define-key slime-mode-map [(control ?\=)] (lambda () (interactive) (insert ")")))
+
+		(define-key slime-mode-map (kbd "RET") 'paredit-newline)
+		(define-key slime-mode-map (kbd "<return>") 'paredit-newline)
+		(define-key slime-mode-map (kbd "C-j") 'newline)
+		(define-key slime-mode-map (kbd "\"") 'paredit-doublequote)
+		(define-key slime-mode-map (kbd "\\") 'paredit-backslash)
+
+		(define-key slime-mode-map (kbd "C-h") 'backward-sexp)
 		(define-key slime-mode-map (kbd "C-t") 'transpose-sexps)
 		(define-key slime-mode-map (kbd "C-M-t") 'transpose-chars)
 		(define-key slime-mode-map (kbd "C-b") 'backward-sexp)
 		(define-key slime-mode-map (kbd "C-M-b") 'backward-char)
 		(define-key slime-mode-map (kbd "C-f") 'forward-sexp)
 		(define-key slime-mode-map (kbd "C-M-f") 'forward-char)
+
+		(define-key slime-mode-map (kbd "C-n") 'forward-sexp)
+		(define-key slime-mode-map (kbd "C-k") 'kill-sexp)
+		(define-key slime-mode-map (kbd "C-M-k") 'paredit-kill)
+		(define-key slime-mode-map (kbd "C-'") 'paredit-splice-sexp)
+		(define-key slime-mode-map (kbd "C-M-l") 'paredit-recentre-on-sexp)
+		(define-key slime-mode-map (kbd "C-,") 'paredit-backward-slurp-sexp)
+		(define-key slime-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
+		(define-key slime-mode-map (kbd "C-<") 'paredit-backward-barf-sexp)
+		(define-key slime-mode-map (kbd "C->") 'paredit-forward-barf-sexp)
+		(define-key slime-mode-map (kbd "C-/") 'backward-up-list)
+		(define-key slime-mode-map (kbd "C-\\") 'down-list)
+		(define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
+		(define-key slime-mode-map (kbd "C-c TAB") 'slime-complete-form)
+		(define-key global-map (kbd "<f12>") 'slime-selector)
 		))
 
 ;; Load yaml-mode
@@ -300,8 +322,8 @@
  '(ecb-tree-expand-symbol-before t)
  '(ecb-wget-setup (quote ("Please_add_wget_to_your_path_or_set_the_fullpath_to_wget" . other)))
  '(jde-global-classpath (quote ("/Users/neo/Code/Clojure/clojure/classes" "/Users/neo/Code/Clojure/clojure/src/clj" ".")))
- '(jde-jdk (quote ("1.5.0")))
- '(jde-jdk-registry (quote (("1.4.2" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.4") ("1.5.0" . "/System/Library/Frameworks/JavaVM.framework") ("1.6.0" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6"))))
+ '(jde-jdk (quote ("1.6.0")))
+ '(jde-jdk-registry (quote (("1.3.1" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.3") ("1.6.0" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6"))))
  '(paren-match-face (quote paren-face-match-light))
  '(paren-sexp-mode t)
  '(rng-nxml-auto-validate-flag nil)
