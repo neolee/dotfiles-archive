@@ -6,8 +6,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (mouse-avoidance-mode 'cat-and-mouse)
 
-;; Loading color-theme
-; (add-to-list 'load-path "~/.emacs.d/color-theme")
+; Loading color-theme
+(add-to-list 'load-path "~/.emacs.d/color-theme")
+(require 'color-theme-g0sub)
+(color-theme-g0sub)
 
 ;; I hate auto save and auto backup files scattered all over the file system
 ;; so we turn them off...
@@ -69,24 +71,21 @@
 	("." . browse-url-default-macosx-browser)
 	))
 
-; Load clojure stuff
+; Load FP stuff: clojure, sbcl, slime
 (add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
+(add-to-list 'load-path "~/.emacs.d/slime")
+
+(setq swank-clojure-jar-path "~/Code/Clojure/clojure/clojure.jar")
+(setq swank-clojure-extra-classpaths
+	(list "~/Code/Clojure/clojure-contrib/clojure-contrib.jar"))
+
 (require 'clojure-mode)
+(require 'swank-clojure-autoload)
 
-;; Initiate clojure environment
-(clojure-slime-config "/Users/neo/.emacs.d")
+(require 'slime)
 
-;; The line above can load slime correctly so comment the following
-
-;; Load slime and swank-clojure
-; (add-to-list 'load-path "~/.emacs.d/slime")
-; (require 'slime-autoloads)
-
-(setq slime-lisp-implementations `(
-	(sbcl ("/usr/local/bin/sbcl"))
-	; (sbcl ("/opt/local/bin/sbcl"))
-	; (clisp ("/opt/local/bin/clisp"))
-	))
+(add-to-list 'slime-lisp-implementations '(sbcl ("/usr/local/bin/sbcl")))
 
 (add-hook 'lisp-mode-hook
 	(lambda ()
@@ -308,7 +307,7 @@
 ; (semantic-load-enable-minimum-features)
 ; * This enables some tools useful for coding, such as summary mode
 ;   imenu support, and the semantic navigator
-(semantic-load-enable-code-helpers)
+; (semantic-load-enable-code-helpers)
 ; * This enables even more coding tools such as the nascent intellisense mode
 ;   decoration mode, and stickyfunc mode (plus regular code helpers)
 ; (semantic-load-enable-guady-code-helpers)
@@ -320,14 +319,14 @@
 ; (semantic-load-enable-semantic-debugging-helpers)
 
 ;; Load elib
-(add-to-list 'load-path "~/.emacs.d/elib")
+;(add-to-list 'load-path "~/.emacs.d/elib")
 ;; Load jde
-(add-to-list 'load-path "~/.emacs.d/jde/lisp")
-(require 'jde)
+;(add-to-list 'load-path "~/.emacs.d/jde/lisp")
+;(require 'jde)
 
 ;; Load ecb
-(add-to-list 'load-path "~/.emacs.d/ecb")
-(require 'ecb)
+;(add-to-list 'load-path "~/.emacs.d/ecb")
+;(require 'ecb)
 
 ;; Launch ecb by default
 ; (ecb-activate)
