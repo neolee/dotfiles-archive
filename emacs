@@ -6,6 +6,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (mouse-avoidance-mode 'cat-and-mouse)
 
+(add-to-list 'default-frame-alist '(height . 54))
+(add-to-list 'default-frame-alist '(width . 140))
+
 ; Loading color-theme
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (require 'color-theme-g0sub)
@@ -337,6 +340,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
  '(case-fold-search nil)
  '(ecb-layout-name "oasis")
  '(ecb-options-version "2.40")
