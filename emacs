@@ -37,6 +37,10 @@
 (defvar backup-dir "~/.emacs.d/.backup-files/")
 (setq backup-directory-alist (list (cons "." backup-dir)))
 
+;; Disable abbrev save to prevent weird annoying
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
+(setq save-abbrevs nil)
+
 ;; Default encoding for Emacs in terminal
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -45,49 +49,18 @@
 ;; My elisp load-path
 (add-to-list 'load-path "~/.emacs.d/")
 
-;; Load git
-(require 'git)
-
-;; And mmm everywhere
-(add-to-list 'load-path "~/.emacs.d/mmm-mode/")
-(setq mmm-global-mode 'maybe)
-(require 'mmm-mode)
-; (setq mmm-global-mode t)
-; (require 'mmm-auto)
-
-;; Disable abbrev save to prevent weird annoying
-(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
-(setq save-abbrevs nil)
-
-;; Enable ido mode by default
-(require 'ido)
-(ido-mode t)
-
-;; Enable w3m
-(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m")
-(if window-system
-	(require 'w3m-load))
-
-(setq browse-url-browser-function '(
-	("hyperspec" . w3m-browse-url)
-	("HyperSpec" . w3m-browse-url)
-	("." . browse-url-default-macosx-browser)
-	))
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+  (load
+    (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
 
 ; Load FP stuff: clojure, sbcl, slime
-(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(add-to-list 'load-path "~/.emacs.d/swank-clojure/src/emacs")
-(add-to-list 'load-path "~/.emacs.d/slime")
-
-(setq swank-clojure-jar-path "~/Code/Clojure/clojure/clojure.jar")
-(setq swank-clojure-extra-classpaths
-	(list "~/Code/Clojure/clojure-contrib/clojure-contrib.jar"))
-
-(require 'clojure-mode)
-(require 'swank-clojure-autoload)
-
 (require 'slime)
-
 (add-to-list 'slime-lisp-implementations '(sbcl ("/usr/local/bin/sbcl")))
 
 (add-hook 'lisp-mode-hook
@@ -170,6 +143,31 @@
 		(define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
 		(define-key slime-mode-map (kbd "C-c TAB") 'slime-complete-form)
 		))
+
+;; Load git
+(require 'git)
+
+;; And mmm everywhere
+(add-to-list 'load-path "~/.emacs.d/mmm-mode/")
+(setq mmm-global-mode 'maybe)
+(require 'mmm-mode)
+; (setq mmm-global-mode t)
+; (require 'mmm-auto)
+
+;; Enable ido mode by default
+(require 'ido)
+(ido-mode t)
+
+;; Enable w3m
+(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m")
+(if window-system
+	(require 'w3m-load))
+
+(setq browse-url-browser-function '(
+	("hyperspec" . w3m-browse-url)
+	("HyperSpec" . w3m-browse-url)
+	("." . browse-url-default-macosx-browser)
+	))
 
 ;; Load yaml-mode
 (require 'yaml-mode)
