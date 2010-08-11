@@ -5,12 +5,13 @@ export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 export SVN_EDITOR="/usr/bin/e -w"
 export RI="--format ansi -T"
 
+export SBCL_HOME="/usr/local/lib/sbcl"
+export MZSCHEME_HOME="/Users/neo/Code/Scheme/PLT"
 export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
-export PATH=$PATH:$JRUBY_HOME/bin
-
 export GOROOT="/Users/neo/Code/Go/Home"
 export GOBIN="$GOROOT/bin"
-export PATH=$PATH:$GOBIN
+
+export PATH="$PATH:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -27,6 +28,8 @@ alias ls='ls -Gw'
 alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
+alias psgrep='ps -all -A |grep '
+
 alias x='exit'
 
 ## zsh global alias
@@ -36,7 +39,7 @@ alias -g '.....'='../../../..'
 
 ## zsh path alias
 hash -d mrp="/Users/neo/Code/Repo/mrp"
-hash -d iphone="/Users/neo/Code/iPhone/Projects"
+hash -d rr="/Users/neo/Code/Apple/Projects/RadioRock"
 
 ## zsh completion setting
 zstyle ':completion:*' completer _expand _complete _correct _approximate
