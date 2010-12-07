@@ -49,28 +49,40 @@
 ;; My elisp load-path
 (add-to-list 'load-path "~/.emacs.d/")
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
+;; This was installed by package-install.el.
+;; This provides support for the package system and
+;; interfacing with ELPA, the package archive.
+;; Move this code earlier if you want to reference
+;; packages in your .emacs.
 (when
   (load
     (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
-; Load FP stuff: clojure, sbcl, slime
+; For clojure stuff from technomancy
+(add-to-list 'package-archives
+             '("technomancy" . "http://repo.technomancy.us/emacs/") t)
+
+;; Load FP stuff: clojure, sbcl, slime
+
+;; Load clojure-mode
+(add-to-list 'load-path "~/.emacs.d/clojure-mode.technomancy/")
+(require 'clojure-mode)
+
+;; Load and set up slime
+; (add-to-list 'load-path "~/.emacs.d/slime/")
+(add-to-list 'load-path "~/.emacs.d/slime.technomancy/")
 (require 'slime)
 (add-to-list 'slime-lisp-implementations '(sbcl ("/usr/local/bin/sbcl")))
+
+(eval-after-load "slime"
+	'(slime-setup '(slime-fancy slime-banner)))
 
 (add-hook 'lisp-mode-hook
 	(lambda ()
 	(cond ((not (featurep 'slime))
 	  (require 'slime) 
 		(normal-mode)))))
-
-(eval-after-load "slime"
-	'(slime-setup '(slime-fancy slime-banner)))
 
 (global-set-key (kbd "<f5>") 'slime-selector)
 
@@ -143,6 +155,9 @@
 		(define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
 		(define-key slime-mode-map (kbd "C-c TAB") 'slime-complete-form)
 		))
+
+;; Syntax highlighting in the slime repl only for swank-clojure
+(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 
 ;; Load git
 (require 'git)

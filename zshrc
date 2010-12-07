@@ -8,10 +8,11 @@ export RI="--format ansi -T"
 export SBCL_HOME="/usr/local/lib/sbcl"
 export MZSCHEME_HOME="/Users/neo/Code/Scheme/PLT"
 export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
+export LEIN_HOME="/Users/neo/.lein"
 export GOROOT="/Users/neo/Code/Go/Home"
 export GOBIN="$GOROOT/bin"
 
-export PATH="$PATH:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
+export PATH="$PATH:$LEIN_HOME/bin:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
