@@ -11,8 +11,9 @@ export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
 export LEIN_HOME="/Users/neo/.lein"
 export GOROOT="/Users/neo/Code/Go/Home"
 export GOBIN="$GOROOT/bin"
+export ANDROID="/Users/neo/Code/Android"
 
-export PATH="$PATH:$LEIN_HOME/bin:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
+export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -39,8 +40,7 @@ alias -g '....'='../../..'
 alias -g '.....'='../../../..'
 
 ## zsh path alias
-hash -d mrp="/Users/neo/Code/Repo/mrp"
-hash -d rr="/Users/neo/Code/Apple/Projects/RadioRock"
+# hash -d mrp="/Users/neo/Code/Repo/mrp"
 
 ## zsh completion setting
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -121,44 +121,6 @@ setopt PROMPT_SUBST \
     INTERACTIVE_COMMENTS
 
 zmodload zsh/terminfo zsh/termcap
-
-## figure out what the PATH should be
-typeset -U common_paths
-common_paths=(
-    ${path} ${=$(command -p getconf PATH)//:/ }		# what the system thinks PATH should be
-    # /bin /sbin /usr/bin /usr/sbin								# good places to look
-    # /usr/local/bin /usr/local/sbin							# freebsd
-    # /usr/X11R6/bin															# x11
-    # /usr/pkg/bin /usr/pkg/sbin									# ???
-    # /usr/ucb																		# solaris - bsd
-    # /usr/sfw/bin /usr/sfw/sbin									# solaris - sun free-ware
-    # /usr/xpg4/bin /usr/xpg6/bin									# solaris - x/open portability guide
-    # /opt/local/bin /opt/local/sbin              # solaris / macports
-    # /opt/SUNWspro/bin	                        	# solaris
-    # /usr/ccs/bin																# solaris - c compilation system
-    # /usr/platform/$(uname -i)/sbin	        		# solaris - hardware dependent
-    # /var/qmail/bin															# qmail - uncomment if desired
-    # /usr/games																	# fun stuff
-    # ${HOME}/bin																	# personal stuff
-)
-
-unset PATH_tmp
-unsetopt NOMATCH
-for temp_path in ${common_paths}
-do
-  if [[ ${OSTYPE} == solaris* ]] {
-	  ## solaris may has some of these directories owned by "bin:bin" (uid 2)
-	  ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install
-	  test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-  } else {
-	  test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-	  ## the next line shows how to include symlinks in the PATH
-	  # test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-  }
-done
-setopt NOMATCH
-export PATH=${PATH_tmp/%:/}
-unset common_paths temp_path PATH_tmp
 
 ## solaris grep is lacking
 if [[ ${OSTYPE} == solaris* ]] {
