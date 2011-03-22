@@ -341,7 +341,7 @@ ACS[ULCORNER]=${altchar[l]:-+}	# upper left corner
 ACS[URCORNER]=${altchar[k]:-+}	# upper right corner
 ACS[VLINE]=${altchar[x]:-#}		# vertical line
 
-export LESS_TERMCAP_md="${terminfo[bold]}${fg_bold[white]}"	# bold/ bright
+export LESS_TERMCAP_md="${terminfo[bold]}${fg_bold[blue]}"	# bold/ bright
 export LESS_TERMCAP_mh="${fg[white]}"		# dim/ half
 export LESS_TERMCAP_me="${terminfo[sgr0]}"	# normal (turn off all attributes)
 export LESS_TERMCAP_mr="${terminfo[rev]}"	# reverse
@@ -525,7 +525,7 @@ else
     PR_STUFF[UPTIME_LOAD_LOW]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_GREEN]}"
     PR_STUFF[UPTIME_LOAD_MED]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_YELLOW]}"
     PR_STUFF[UPTIME_LOAD_HI]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_RED]}"
-    	PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[WHITE]}"
+    	PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[BLACK]}"
     	[[ 0 -eq ${UID} ]] && PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[RED]}"
     PR_STUFF[ROOT_BG]="$PR_STUFF[BG_LIGHT_RED]"
 fi
@@ -602,15 +602,15 @@ preexec () {
   command_title "${1}"
 }
 
-## // unfortunately, this chokes on interactve prompts to STDERR, eg, rm -i file
-## Colorize STDERR
-## based on - http://gentoo-wiki.com/TIP_Advanced_zsh_Completion#Colorize_STDERR
-## // the only way really make this work properly is to implement it in the terminal
-#exec 2>>(
-#while read stderr
-#do
-#	print "${fg[red]}"${(q)stderr}"${terminfo[sgr0]}" 1>&2
-#done)
+# // unfortunately, this chokes on interactve prompts to STDERR, eg, rm -i file
+# Colorize STDERR
+# based on - http://gentoo-wiki.com/TIP_Advanced_zsh_Completion#Colorize_STDERR
+# // the only way really make this work properly is to implement it in the terminal
+exec 2>>(
+while read stderr
+do
+	print "${fg[red]}"${(q)stderr}"${terminfo[sgr0]}" 1>&2
+done)
 
 ## colored completion listings
 [[ "${terminfo[colors]}" -ge 8 ]] && zstyle ':completion:*:default' list-colors \
@@ -721,9 +721,9 @@ ${PR_STUFF[SHIFT_IN]}${ACS[LTEE]}\
 ${(e)PR_STUFF[FILLBAR]}\
 
 ${PR_STUFF[SHIFT_IN]}${ACS[LLCORNER]}${PR_STUFF[exitstuff]}\
-%#${PR_STUFF[NO_COLOR]}${PR_STUFF[SHIFT_OUT]} ${PR_STUFF[CYAN]}'
+%#${PR_STUFF[NO_COLOR]}${PR_STUFF[SHIFT_OUT]} ${PR_STUFF[BLACK]}'
 
-PS2='${PR_STUFF[BLUE]}>${PR_STUFF[NO_COLOR]} ${PR_STUFF[CYAN]}'
+PS2='${PR_STUFF[BLUE]}>${PR_STUFF[NO_COLOR]} ${PR_STUFF[BLACK]}'
 
 # RPS1 not used - it got in the way of copy-n-paste,
 # especially with multi-line commands
@@ -731,11 +731,11 @@ PS2='${PR_STUFF[BLUE]}>${PR_STUFF[NO_COLOR]} ${PR_STUFF[CYAN]}'
 RPS2='${PR_STUFF[BLUE]}${PR_STUFF[BG_PS]}${PR_STUFF[SHIFT_IN]}\
 ${ACS[HLINE]}${PR_STUFF[WHITE]}${ACS[RTEE]}${PR_STUFF[SHIFT_OUT]}\
 %_\
-${PR_STUFF[SHIFT_IN]}${ACS[VLINE]}${PR_STUFF[SHIFT_OUT]}${PR_STUFF[NO_COLOR]}${PR_STUFF[CYAN]}'
+${PR_STUFF[SHIFT_IN]}${ACS[VLINE]}${PR_STUFF[SHIFT_OUT]}${PR_STUFF[NO_COLOR]}${PR_STUFF[BLACK]}'
 
 ## spelling prompt
-SPROMPT="${PR_STUFF[YELLOW]}zsh: correct '%U%R%u' to '%U%r%u' ${PR_STUFF[NO_COLOR]}\
-${PR_STUFF[LIGHT_YELLOW]}[Nyae]?${PR_STUFF[NO_COLOR]} "
+SPROMPT="${PR_STUFF[CYAN]}zsh: correct '%U%R%u' to '%U%r%u' ${PR_STUFF[NO_COLOR]}\
+${PR_STUFF[LIGHT_CYAN]}[Nyae]${PR_STUFF[NO_COLOR]}? "
 
 ###########################################
 ## display some stuff when the shell starts
