@@ -1,19 +1,20 @@
 ## my own stuff
 
 ## customized environment variables
-export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
-export SVN_EDITOR="/usr/bin/e -w"
+export EDITOR='/usr/local/bin/e -w'
+export SVN_EDITOR="/usr/local/bin/e -w"
+export LESSEDIT='/usr/local/bin/e -l %lm %f'
+
 export RI="--format ansi -T"
 
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+export LEIN_HOME="/Users/neo/.lein"
+export ANDROID="/Users/neo/Code/Android"
 export SBCL_HOME="/usr/local/lib/sbcl"
 export MZSCHEME_HOME="/Users/neo/Code/Scheme/PLT"
 export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
-export LEIN_HOME="/Users/neo/.lein"
-export GOROOT="/Users/neo/Code/Go/Home"
-export GOBIN="$GOROOT/bin"
-export ANDROID="/Users/neo/Code/Android"
 
-export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:$GOBIN"
+export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$SBCL_HOME/bin:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -606,11 +607,11 @@ preexec () {
 # Colorize STDERR
 # based on - http://gentoo-wiki.com/TIP_Advanced_zsh_Completion#Colorize_STDERR
 # // the only way really make this work properly is to implement it in the terminal
-exec 2>>(
-while read stderr
-do
-	print "${fg[red]}"${(q)stderr}"${terminfo[sgr0]}" 1>&2
-done)
+# exec 2>>(
+# while read stderr
+# do
+# 	print "${fg[red]}"${(q)stderr}"${terminfo[sgr0]}" 1>&2
+# done)
 
 ## colored completion listings
 [[ "${terminfo[colors]}" -ge 8 ]] && zstyle ':completion:*:default' list-colors \
