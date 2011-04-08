@@ -6,8 +6,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (mouse-avoidance-mode 'cat-and-mouse)
 
-(add-to-list 'default-frame-alist '(height . 54))
-(add-to-list 'default-frame-alist '(width . 140))
+(add-to-list 'default-frame-alist '(height . 48))
+(add-to-list 'default-frame-alist '(width . 120))
 
 ; Loading color-theme
 (add-to-list 'load-path "~/.emacs.d/color-theme")
@@ -66,14 +66,13 @@
 ;; Load FP stuff: clojure, sbcl, slime
 
 ;; Load clojure-mode
-(add-to-list 'load-path "~/.emacs.d/clojure-mode.technomancy/")
+(add-to-list 'load-path "~/.emacs.d/clojure-mode/")
 (require 'clojure-mode)
 
 ;; Load and set up slime
-; (add-to-list 'load-path "~/.emacs.d/slime/")
-(add-to-list 'load-path "~/.emacs.d/slime.technomancy/")
+(add-to-list 'load-path "~/.emacs.d/slime/")
 (require 'slime)
-(add-to-list 'slime-lisp-implementations '(sbcl ("/usr/local/bin/sbcl")))
+(add-to-list 'slime-lisp-implementations '(sbcl ("/opt/local/bin/sbcl")))
 
 (eval-after-load "slime"
 	'(slime-setup '(slime-fancy slime-banner)))
@@ -166,15 +165,13 @@
 (add-to-list 'load-path "~/.emacs.d/mmm-mode/")
 (setq mmm-global-mode 'maybe)
 (require 'mmm-mode)
-; (setq mmm-global-mode t)
-; (require 'mmm-auto)
 
 ;; Enable ido mode by default
 (require 'ido)
 (ido-mode t)
 
 ;; Enable w3m
-(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m")
+(add-to-list 'load-path "~/.emacs.d/w3m")
 (if window-system
 	(require 'w3m-load))
 
@@ -211,90 +208,6 @@
 (fset 'xml-mode 'nxml-mode)
 (fset 'html-mode 'nxml-mode)
 
-;; Load emacs-ruby, emacs-rails and deps
-(add-to-list 'load-path "~/.emacs.d/ruby-mode")
-(require 'ruby-mode)
-
-(autoload 'ruby-mode "ruby-mode" "Ruby editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-
-(add-hook 'ruby-mode-hook
-	(lambda()
-		(add-hook 'local-write-file-hooks
-			'(lambda()
-				(save-excursion
-					(untabify (point-min) (point-max))
-					(delete-trailing-whitespace)
-				)))
-		(define-key ruby-mode-map "\C-m" 'newline-and-indent)
-		(set (make-local-variable 'indent-tabs-mode) 'nil)
-		(set (make-local-variable 'tab-width) 2)
-		(require 'ruby-electric)
-		(ruby-electric-mode t)
-	))
-
-(autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
-(autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-
-(add-hook 'ruby-mode-hook
-	'(lambda ()
-		(inf-ruby-keys)))
-
-(autoload 'rubydb "rubydb3x" "Ruby debugger" t)
-
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/yasnippet/snippets")
-
-(add-to-list 'load-path "~/.emacs.d/rhtml")
-(require 'rhtml-mode)
-
-(add-to-list 'load-path "~/.emacs.d/emacs-rails")
-(require 'rails)
-
-; ri-ruby
-(add-to-list 'load-path "~/.emacs.d/ri-emacs")
-(setq ri-ruby-script (expand-file-name "~/.emacs.d/ri-emacs/ri-emacs.rb"))
-(autoload 'ri "ri-ruby.el" nil t)
-(add-hook 'ruby-mode-hook (lambda ()
-	(local-set-key "\C-cd" 'ri)
-	(local-set-key "\C-cf" 'ri-ruby-complete-symbol)
-	(local-set-key "\C-ca" 'ri-ruby-show-args)
-))
-
-; rcodetool
-(add-to-list 'load-path "~/.emacs.d/rcodetool")
-(require 'rcodetools)
-(setq rct-find-tag-if-available nil)
-(defun make-ruby-scratch-buffer ()
-  (with-current-buffer (get-buffer-create "*ruby scratch*")
-    (ruby-mode)
-    (current-buffer)))
-(defun ruby-scratch ()
-  (interactive)
-  (pop-to-buffer (make-ruby-scratch-buffer)))
-(defun ruby-mode-hook-rcodetools ()
-	(define-key ruby-mode-map (kbd "C-c C-c") 'ruby-scratch))
-	(define-key ruby-mode-map (kbd "C-c C-d") 'xmp)
-(add-hook 'ruby-mode-hook 'ruby-mode-hook-rcodetools)
-
-; Set mmm for erb
-(eval-after-load "mmm-mode"
-  '(progn
-  	(mmm-add-classes
-    	'((eruby :submode ruby-mode :front "<%[#=]?" :back "-?%>"
-               :match-face (("<%#" . mmm-comment-submode-face)
-                            ("<%=" . mmm-output-submode-face)
-                            ("<%"  . mmm-code-submode-face))
-               :insert ((?% erb-code       nil @ "<%"  @ " " _ " " @ "%>" @)
-                        (?# erb-comment    nil @ "<%#" @ " " _ " " @ "%>" @)
-                        (?= erb-expression nil @ "<%=" @ " " _ " " @ "%>" @)))))
-    (mmm-add-mode-ext-class 'rhtml-mode "\\.html\\.erb$" 'eruby)
-    (mmm-add-mode-ext-class 'rhtml-mode "\\.rhtml$" 'eruby)
-    (mmm-add-mode-ext-class 'yaml-mode "\\.yml$" 'eruby)))
-
 ;; Load markdown-mode
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
@@ -314,39 +227,6 @@
   (message "buffer tidy'ed"))
 (global-set-key (kbd "C-x t") 'tidy-buffer)
 
-;; Load cedet
-(load-file "~/.emacs.d/cedet/common/cedet.el")
-
-; Enabling various SEMANTIC minor modes. See semantic/INSTALL for more ideas.
-; Select one of the following:
-; * This enables the database and idle reparse engines
-; (semantic-load-enable-minimum-features)
-; * This enables some tools useful for coding, such as summary mode
-;   imenu support, and the semantic navigator
-; (semantic-load-enable-code-helpers)
-; * This enables even more coding tools such as the nascent intellisense mode
-;   decoration mode, and stickyfunc mode (plus regular code helpers)
-; (semantic-load-enable-guady-code-helpers)
-; * This turns on which-func support (Plus all other code helpers)
-; (semantic-load-enable-excessive-code-helpers)
-; * This turns on modes that aid in grammar writing and semantic tool
-;   development.  It does not enable any other features such as code
-;   helpers above.
-; (semantic-load-enable-semantic-debugging-helpers)
-
-;; Load elib
-;(add-to-list 'load-path "~/.emacs.d/elib")
-;; Load jde
-;(add-to-list 'load-path "~/.emacs.d/jde/lisp")
-;(require 'jde)
-
-;; Load ecb
-;(add-to-list 'load-path "~/.emacs.d/ecb")
-;(require 'ecb)
-
-;; Launch ecb by default
-; (ecb-activate)
-
 ;; Custom generated
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -355,21 +235,9 @@
   ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(case-fold-search nil)
- '(ecb-layout-name "oasis")
- '(ecb-options-version "2.40")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-show-sources-in-directories-buffer (quote ("left7" "left13" "left14" "left15" "single")))
- '(ecb-source-path (quote ("~/Code")))
- '(ecb-tip-of-the-day nil)
- '(ecb-tree-expand-symbol-before t)
- '(ecb-wget-setup (quote ("Please_add_wget_to_your_path_or_set_the_fullpath_to_wget" . other)))
- '(jde-global-classpath (quote ("/Users/neo/Code/Clojure/clojure/classes" "/Users/neo/Code/Clojure/clojure/src/clj" ".")))
- '(jde-jdk (quote ("1.6.0")))
- '(jde-jdk-registry (quote (("1.3.1" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.3") ("1.6.0" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6"))))
  '(paren-match-face (quote paren-face-match-light))
  '(paren-sexp-mode t)
  '(rng-nxml-auto-validate-flag nil)
- '(semanticdb-default-save-directory "~/.emacs.d/semanticdb")
  '(show-paren-mode t)
  '(w3m-default-coding-system (quote utf-8))
  '(w3m-file-coding-system (quote utf-8))
