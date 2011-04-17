@@ -744,4 +744,5 @@ print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}
 ${terminfo[smul]}MACH:\t$MACHTYPE${terminfo[rmul]}
 ${terminfo[smul]}CPU:\t$CPUTYPE${terminfo[rmul]}"
 
-:
+# Loads RVM into a shell session
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
