@@ -12,9 +12,8 @@ export LEIN_HOME="/Users/neo/.lein"
 export ANDROID="/Users/neo/Code/Android"
 export SBCL_HOME="/opt/local/lib/sbcl"
 export MZSCHEME_HOME="/Users/neo/Code/Scheme/Racket"
-export JRUBY_HOME="/Users/neo/Code/Ruby/JRuby"
 
-export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$JRUBY_HOME/bin:"
+export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -32,6 +31,8 @@ alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
 alias psgrep='ps -all -A |grep '
+
+alias diff='colordiff'
 
 alias x='exit'
 
