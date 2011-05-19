@@ -9,9 +9,10 @@ export RI="--format ansi -T"
 
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 export LEIN_HOME="/Users/neo/.lein"
-export ANDROID="/Users/neo/Code/Android"
+export NODE_PATH="/usr/local/lib/node_modules"
 export SBCL_HOME="/opt/local/lib/sbcl"
 export MZSCHEME_HOME="/Users/neo/Code/Scheme/Racket"
+export ANDROID="/Users/neo/Code/Android"
 
 export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:"
 
@@ -30,7 +31,9 @@ alias ls='ls -Gw'
 alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
-alias psgrep='ps -all -A |grep '
+alias spec='rspec --color --format doc'
+
+alias psgrep='ps -all -A |grep'
 
 alias diff='colordiff'
 
