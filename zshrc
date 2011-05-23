@@ -31,7 +31,8 @@ alias ls='ls -Gw'
 alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
-alias spec='rspec --color --format doc'
+alias spec='rspec -c -f d'
+alias spec2='rspec -f h -o result.html'
 
 alias psgrep='ps -all -A |grep'
 
