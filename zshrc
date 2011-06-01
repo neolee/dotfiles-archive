@@ -32,7 +32,6 @@ alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
 alias spec='rspec -c -f d'
-alias spec2='rspec -f h -o result.html'
 
 alias psgrep='ps -all -A |grep'
 
@@ -117,9 +116,16 @@ HISTSIZE=250
 [[ ${OSTYPE} == *freebsd* ]] && export CLICOLOR=yes
 
 ## enable:
+setopt ALWAYS_TO_END \
+    BASH_AUTO_LIST \
+    NO_BEEP \
+    CLOBBER
+
 setopt PROMPT_SUBST \
     EXTENDED_GLOB \
     AUTO_CD \
+    CD_ABLE_VARS \
+    MULTIOS \
     CORRECT \
     CORRECT_ALL \
     ZLE \
