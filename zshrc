@@ -31,8 +31,6 @@ alias ls='ls -Gw'
 alias l='ls -Gwl'
 alias ll='ls -Gwla'
 
-alias spec='rspec -c -f d'
-
 alias psgrep='ps -all -A |grep'
 
 alias diff='colordiff'

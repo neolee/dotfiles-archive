@@ -1,6 +1,9 @@
 ;; We need mouse wheel!
 (setq scroll-step 1)
 
+;; We hate the toolbar
+(tool-bar-mode 0)
+
 ;; Some tweaks
 (setq inhibit-startup-message t)
 (fset 'yes-or-no-p 'y-or-n-p)
