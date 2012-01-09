@@ -30,12 +30,12 @@ alias rm='rm -i'
 alias ls='ls -Gw'
 alias l='ls -Gwl'
 alias ll='ls -Gwla'
-
 alias psgrep='ps -all -A |grep'
-
 alias diff='colordiff'
-
 alias x='exit'
+
+## for issue in Octopress vs. zsh
+alias rake='noglob rake'
 
 ## zsh global alias
 alias -g '...'='../..'
