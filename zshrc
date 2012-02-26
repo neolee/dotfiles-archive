@@ -10,11 +10,13 @@ export RI="--format ansi -T"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 export LEIN_HOME="/Users/neo/.lein"
 export NODE_PATH="/usr/local/lib/node_modules"
-export SBCL_HOME="/opt/local/lib/sbcl"
+export SBCL_HOME="/usr/local/lib/sbcl"
 export MZSCHEME_HOME="/Users/neo/Code/Scheme/Racket"
 export ANDROID="/Users/neo/Code/Android"
+export GOROOT="/Users/neo/Code/Go/Home"
+export GOBIN="$GOROOT/bin"
 
-export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:"
+export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$GOBIN:"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -33,6 +35,7 @@ alias ll='ls -Gwla'
 alias psgrep='ps -all -A |grep'
 alias diff='colordiff'
 alias x='exit'
+alias e='subl -n'
 
 ## for issue in Octopress vs. zsh
 alias rake='noglob rake'
@@ -202,7 +205,7 @@ cdmkdir () {
 
 fortune () {
 	## include all fortunes in the database
-	#command fortune -a ${@} /opt/local/share/games/fortune
+	#command fortune -a ${@} /usr/local/share/games/fortune
 }
 
 shellname () {

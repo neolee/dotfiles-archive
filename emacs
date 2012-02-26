@@ -1,3 +1,6 @@
+;; My elisp load-path
+(add-to-list 'load-path "~/.emacs.d/")
+
 ;; We need mouse wheel!
 (setq scroll-step 1)
 
@@ -14,8 +17,10 @@
 
 ; Loading color-theme
 (add-to-list 'load-path "~/.emacs.d/color-theme")
-(require 'color-theme-g0sub)
-(color-theme-g0sub)
+; (require 'color-theme-g0sub)
+; (color-theme-g0sub)
+(require 'color-theme-solarized)
+(color-theme-solarized-light)
 
 ;; I hate auto save and auto backup files scattered all over the file system
 ;; so we turn them off...
@@ -49,8 +54,8 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-;; My elisp load-path
-(add-to-list 'load-path "~/.emacs.d/")
+;; Make any instance of Emacs know my PATH well
+(setenv "PATH" (shell-command-to-string "echo $PATH"))
 
 ;; This was installed by package-install.el.
 ;; This provides support for the package system and
@@ -75,7 +80,7 @@
 ;; Load and set up slime
 (add-to-list 'load-path "~/.emacs.d/slime/")
 (require 'slime)
-(add-to-list 'slime-lisp-implementations '(sbcl ("/opt/local/bin/sbcl")))
+(add-to-list 'slime-lisp-implementations '(sbcl ("/usr/local/bin/sbcl")))
 
 (eval-after-load "slime"
 	'(slime-setup '(slime-fancy slime-banner)))
