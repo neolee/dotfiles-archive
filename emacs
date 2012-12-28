@@ -59,9 +59,37 @@
 ;; Make any instance of Emacs know my PATH well
 (setenv "PATH" (shell-command-to-string "echo $PATH"))
 
+;; Additional package repos
+(require 'package)
+(add-to-list 'package-archives
+	'("marmalade" . "http://marmalade-repo.org/packages/"))
+; (add-to-list 'package-archives
+; 	'("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
+;; Forcing show-paren-mode
+(show-paren-mode t)
+(setq show-paren-style 'parentheses)
+
 ;; Load FP stuff: clojure, sbcl, slime
 
 ;; Load clojure (nrepl & ritz)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+(defvar clojure-packages 
+	'(clojure-mode
+  	nrepl
+    nrepl-ritz))
+(dolist (p clojure-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+(defun nrepl-mode-setup ()
+  (require 'nrepl-ritz)
+	(require 'clojure-mode)
+	(let (font-lock-mode)
+		(clojure-mode-font-lock-setup)))
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-mode-setup)
 
 ;; Load and set up slime for SBCL
 (add-to-list 'load-path "~/.emacs.d/slime/")
@@ -79,16 +107,6 @@
 
 (global-set-key (kbd "<f5>") 'slime-selector)
 
-;; Load paredit-mode
-(autoload 'paredit-mode "paredit" 
-  "Minor mode for pseudo-structurally editing Lisp code." t)
-  
-(mapc 
-  (lambda (mode)
-    (let ((hook (intern (concat (symbol-name mode) "-mode-hook"))))
-      (add-hook hook (lambda () (paredit-mode +1)))))
-  '(emacs-lisp lisp inferior-lisp))
-
 (setq 
   common-lisp-hyperspec-root "file:///Users/neo/Code/Lisp/clhs/HyperSpec/"
   slime-complete-symbol-function 'slime-fuzzy-complete-symbol
@@ -102,14 +120,19 @@
   slime-fuzzy-completion-in-place nil
   )
 
-;; Keyboard customization for slime
-(eval-after-load 'slime
+;; Load paredit-mode
+(autoload 'paredit-mode "paredit" 
+  "Minor mode for pseudo-structurally editing Lisp code." t)
+  
+(mapc 
+  (lambda (mode)
+    (let ((hook (intern (concat (symbol-name mode) "-mode-hook"))))
+      (add-hook hook (lambda () (paredit-mode +1)))))
+  '(emacs-lisp lisp inferior-lisp clojure nrepl nrepl-interaction))
+
+;; Keyboard customization with paredit
+(eval-after-load 'slime 
   '(progn
-    ; * Using built-in functions or paredit-mode functions
-    ; (define-key slime-mode-map (kbd "[") 'insert-parentheses)
-    ; (define-key slime-mode-map (kbd "]") 'move-past-close-and-reindent)
-    ; (define-key slime-mode-map (kbd "(") (lambda () (interactive) (insert "[")))
-    ; (define-key slime-mode-map (kbd ")") (lambda () (interactive) (insert "]")))
     (define-key slime-mode-map (kbd "[") 'paredit-open-parenthesis)
     (define-key slime-mode-map (kbd "]") 'paredit-close-parenthesis-and-newline)
     (define-key slime-mode-map (kbd "(") 'paredit-open-bracket)
@@ -117,8 +140,6 @@
     (define-key slime-mode-map [(control ?\-)] (lambda () (interactive) (insert "(")))
     (define-key slime-mode-map [(control ?\=)] (lambda () (interactive) (insert ")")))
 
-    (define-key slime-mode-map (kbd "RET") 'paredit-newline)
-    (define-key slime-mode-map (kbd "<return>") 'paredit-newline)
     (define-key slime-mode-map (kbd "C-j") 'newline)
     (define-key slime-mode-map (kbd "\"") 'paredit-doublequote)
     (define-key slime-mode-map (kbd "\\") 'paredit-backslash)
@@ -147,6 +168,45 @@
     
     (define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
     (define-key slime-mode-map (kbd "C-c TAB") 'slime-complete-form)
+    ))
+
+(eval-after-load 'clojure-mode
+  '(progn
+    (define-key clojure-mode-map (kbd "[") 'paredit-open-parenthesis)
+    (define-key clojure-mode-map (kbd "]") 'paredit-close-parenthesis-and-newline)
+    (define-key clojure-mode-map (kbd "(") 'paredit-open-bracket)
+    (define-key clojure-mode-map (kbd ")") 'paredit-close-bracket)
+    (define-key clojure-mode-map [(control ?\-)] (lambda () (interactive) (insert "(")))
+    (define-key clojure-mode-map [(control ?\=)] (lambda () (interactive) (insert ")")))
+
+    (define-key clojure-mode-map (kbd "C-j") 'newline)
+    (define-key clojure-mode-map (kbd "\"") 'paredit-doublequote)
+    (define-key clojure-mode-map (kbd "\\") 'paredit-backslash)
+    
+    (define-key clojure-mode-map (kbd "C-t") 'transpose-sexps)
+    (define-key clojure-mode-map (kbd "C-M-t") 'transpose-chars)
+    
+    (define-key clojure-mode-map (kbd "C-b") 'backward-sexp)
+    (define-key clojure-mode-map (kbd "C-M-b") 'backward-char)
+    (define-key clojure-mode-map (kbd "C-f") 'forward-sexp)
+    (define-key clojure-mode-map (kbd "C-M-f") 'forward-char)
+    (define-key clojure-mode-map (kbd "C-n") 'down-list)
+    (define-key clojure-mode-map (kbd "C-M-n") 'next-line)
+    (define-key clojure-mode-map (kbd "C-p") 'backward-up-list)
+    (define-key clojure-mode-map (kbd "C-M-p") 'previous-line)
+    
+    (define-key clojure-mode-map (kbd "C-k") 'kill-sexp)
+    (define-key clojure-mode-map (kbd "C-M-k") 'paredit-kill)
+    
+    (define-key clojure-mode-map (kbd "C-'") 'paredit-splice-sexp)
+    (define-key clojure-mode-map (kbd "C-M-l") 'paredit-recentre-on-sexp)
+    (define-key clojure-mode-map (kbd "C-,") 'paredit-backward-slurp-sexp)
+    (define-key clojure-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
+    (define-key clojure-mode-map (kbd "C-<") 'paredit-backward-barf-sexp)
+    (define-key clojure-mode-map (kbd "C->") 'paredit-forward-barf-sexp)
+    
+    (define-key clojure-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
+    (define-key clojure-mode-map (kbd "C-c TAB") 'slime-complete-form)
     ))
 
 ;; Load git
