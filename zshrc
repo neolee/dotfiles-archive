@@ -15,8 +15,16 @@ export MZSCHEME_HOME="/Users/neo/Code/Scheme/Racket"
 export ANDROID="/Users/neo/Code/Android"
 export GOROOT="/Users/neo/Code/Go/Home"
 export GOBIN="$GOROOT/bin"
+export CABAL_HOME="/Users/neo/Library/Haskell"
 
-export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$GOBIN:"
+export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$GOBIN:$CABAL_HOME/bin:"
+
+## Compiler setting for Homebrew
+export HOMEBREW="/usr/local"
+# export LD_LIBRARY_PATH="$HOMEBREW/lib:/usr/lib"
+# export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
+# export C_INCLUDE_PATH="$HOMEBREW/include"
+# export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -35,7 +43,10 @@ alias ll='ls -Gwla'
 alias psgrep='ps -all -A |grep'
 alias diff='colordiff'
 alias x='exit'
-alias e='subl -n'
+alias e='mate'
+# alias e='subl -n'
+alias u8='unicorn -p 8000'
+alias u8d='unicorn -p 8000 -D'
 
 ## for issue in Octopress vs. zsh
 alias rake='noglob rake'
@@ -758,3 +769,4 @@ ${terminfo[smul]}CPU:\t$CPUTYPE${terminfo[rmul]}"
 
 # Loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
