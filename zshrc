@@ -1,30 +1,40 @@
 ## my own stuff
 
 ## customized environment variables
-export EDITOR='/usr/local/bin/e -w'
-export SVN_EDITOR="/usr/local/bin/e -w"
-export LESSEDIT='/usr/local/bin/e -l %lm %f'
+
+# command line editors
+# export GIT_SSH="/usr/local/bin/git-ssh-wrapper"
+# export EDITOR="/usr/local/bin/mate -w"
+# export SVN_EDITOR="/usr/local/bin/mate -w"
+# export LESSEDIT="/usr/local/bin/mate -l %lm %f"
+export EDITOR="/usr/local/bin/subl -w"
+export SVN_EDITOR="/usr/local/bin/subl -w"
+export LESSEDIT="/usr/local/bin/subl %f"
 
 export RI="--format ansi -T"
 
-export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
-export LEIN_HOME="/Users/neo/.lein"
 export NODE_PATH="/usr/local/lib/node_modules"
-export SBCL_HOME="/usr/local/lib/sbcl"
-export MZSCHEME_HOME="/Users/neo/Code/Scheme/Racket"
 export ANDROID="/Users/neo/Code/Android"
-export GOROOT="/Users/neo/Code/Go/Home"
-export GOBIN="$GOROOT/bin"
+# export GOROOT="/Users/neo/Code/Go/Home"
+# export GOBIN="$GOROOT/bin"
 export CABAL_HOME="/Users/neo/Library/Haskell"
+export STORM_HOME="/Users/neo/Code/Repo/storm"
 
-export PATH="$PATH:$LEIN_HOME/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$MZSCHEME_HOME/bin:$GOBIN:$CABAL_HOME/bin:"
+# using jenv to manage Java VMs
+export JENV_ROOT=/usr/local/opt/jenv
 
-## Compiler setting for Homebrew
+export PATH="$PATH:$JENV_ROOT/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$CABAL_HOME/bin:$STORM_HOME/bin:"
+
+## compiler setting for Homebrew
 export HOMEBREW="/usr/local"
 # export LD_LIBRARY_PATH="$HOMEBREW/lib:/usr/lib"
 # export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
 # export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
+
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/helpfiles
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
@@ -33,6 +43,7 @@ export LC_ALL="en_US.UTF-8"
 ## customized command alias
 alias qlf='qlmanage -p "$@" >& /dev/null'
 alias flushdns='dscacheutil -flushcache'
+alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
 alias grep='grep --color'
 
@@ -43,8 +54,21 @@ alias ll='ls -Gwla'
 alias psgrep='ps -all -A |grep'
 alias diff='colordiff'
 alias x='exit'
+
+alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
+alias linode2='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
+# alias linode='ssh neo@paradigmx.net'
+# alias linode2='ssh neo@codearena.org'
+alias blackhole='ssh neo@blackhole.local'
+
+alias es='/usr/local/bin/emacs --daemon'
+alias esquit="/usr/local/bin/emacsclient -e '(kill-emacs)'"
+alias emacs='/usr/local/bin/emacsclient -c -n'
+
+alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
+
 alias e='mate'
-# alias e='subl -n'
+alias s='subl -n'
 alias u8='unicorn -p 8000'
 alias u8d='unicorn -p 8000 -D'
 
@@ -60,6 +84,8 @@ alias -g '.....'='../../../..'
 # hash -d mrp="/Users/neo/Code/Repo/mrp"
 
 ## zsh completion setting
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' file-sort access
@@ -68,8 +94,6 @@ zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' 'r:|[._-]=** r:|=**' 'l:
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*'   force-list always
 zstyle ':completion:::::' completer _complete _approximate
 zstyle ':completion:*:approximate:*' max-errors 2
 zstyle :compinstall filename '/Users/neo/.zshrc'
@@ -88,6 +112,11 @@ zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
 zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b' # Describe options in full
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+
+# jenv init for aotucompletion
+eval "$(jenv init -)"
 
 local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
@@ -768,5 +797,5 @@ ${terminfo[smul]}MACH:\t$MACHTYPE${terminfo[rmul]}
 ${terminfo[smul]}CPU:\t$CPUTYPE${terminfo[rmul]}"
 
 # Loads RVM into a shell session
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting]
