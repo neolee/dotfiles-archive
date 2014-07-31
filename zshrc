@@ -2,28 +2,29 @@
 
 ## customized environment variables
 
+## locales hacking, used only on special issue
+# export LC_ALL="C"
+export LC_ALL="en_US.UTF-8"
+
 # command line editors
 # export GIT_SSH="/usr/local/bin/git-ssh-wrapper"
-# export EDITOR="/usr/local/bin/mate -w"
-# export SVN_EDITOR="/usr/local/bin/mate -w"
-# export LESSEDIT="/usr/local/bin/mate -l %lm %f"
-export EDITOR="/usr/local/bin/subl -w"
-export SVN_EDITOR="/usr/local/bin/subl -w"
-export LESSEDIT="/usr/local/bin/subl %f"
+export EDITOR="/usr/local/bin/mate -w"
+export SVN_EDITOR="/usr/local/bin/mate -w"
+export LESSEDIT="/usr/local/bin/mate -l %lm %f"
+# export EDITOR="/usr/local/bin/subl -w"
+# export SVN_EDITOR="/usr/local/bin/subl -w"
+# export LESSEDIT="/usr/local/bin/subl %f"
 
-export RI="--format ansi -T"
-
-export NODE_PATH="/usr/local/lib/node_modules"
 export ANDROID="/Users/neo/Code/Android"
 # export GOROOT="/Users/neo/Code/Go/Home"
 # export GOBIN="$GOROOT/bin"
-export CABAL_HOME="/Users/neo/Library/Haskell"
+export CABAL_HOME="/Users/neo/.cabal"
 export STORM_HOME="/Users/neo/Code/Repo/storm"
 
 # using jenv to manage Java VMs
 export JENV_ROOT=/usr/local/opt/jenv
 
-export PATH="$PATH:$JENV_ROOT/bin:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$CABAL_HOME/bin:$STORM_HOME/bin:"
+export PATH="$CABAL_HOME/bin:$PATH:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$STORM_HOME/bin:$JENV_ROOT/bin:"
 
 ## compiler setting for Homebrew
 export HOMEBREW="/usr/local"
@@ -32,21 +33,18 @@ export HOMEBREW="/usr/local"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
 # export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
 
+export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig
+
+export NODE_PATH="/usr/local/lib/node_modules"
+
+export RI="--format ansi -T"
+
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfiles
 
-## locales hacking, used only on special issue
-# export LC_ALL="C"
-export LC_ALL="en_US.UTF-8"
-
 ## customized command alias
-alias qlf='qlmanage -p "$@" >& /dev/null'
-alias flushdns='dscacheutil -flushcache'
-alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
-
 alias grep='grep --color'
-
 alias rm='rm -i'
 alias ls='ls -Gw'
 alias l='ls -Gwl'
@@ -55,24 +53,38 @@ alias psgrep='ps -all -A |grep'
 alias diff='colordiff'
 alias x='exit'
 
-alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
-alias linode2='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
+# remote ssh shortcuts
+alias blackhole='ssh neo@blackhole.local'
 # alias linode='ssh neo@paradigmx.net'
 # alias linode2='ssh neo@codearena.org'
-alias blackhole='ssh neo@blackhole.local'
+alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
+alias linode2='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
 
+# mac os x
+alias qlf='qlmanage -p "$@" >& /dev/null'
+# alias flushdns='dscacheutil -flushcache'
+alias flushdns='sudo killall -HUP mDNSResponder'
+alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+# editors
 alias es='/usr/local/bin/emacs --daemon'
 alias esquit="/usr/local/bin/emacsclient -e '(kill-emacs)'"
 alias emacs='/usr/local/bin/emacsclient -c -n'
-
-alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
-
 alias e='mate'
 alias s='subl -n'
+
+# misc
 alias u8='unicorn -p 8000'
 alias u8d='unicorn -p 8000 -D'
+alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
+alias npmls='npm ls "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
+alias npmlsg='npm ls -g "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
+alias gitls='git ls-files | xargs wc -l'
+alias pip-update='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
 
-## for issue in Octopress vs. zsh
+alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
+
+# fix: for issue in Octopress vs. zsh
 alias rake='noglob rake'
 
 ## zsh global alias
@@ -564,8 +576,8 @@ then
     PR_STUFF[UPTIME_LOAD_LOW]="%{$(echoti setaf 40)%}${PR_STUFF[BG_PS]}"
     PR_STUFF[UPTIME_LOAD_MED]="%{$(echoti setaf 226)%}${PR_STUFF[BG_PS]}"
     PR_STUFF[UPTIME_LOAD_HI]="%{$(echoti setaf 196)%}${PR_STUFF[BG_PS]}"
-    	PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}%{$(echoti setaf 231)%}"
-    	[[ 0 -eq ${UID} ]] && PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}%{$(echoti setaf 196)%}"
+    PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}%{$(echoti setaf 231)%}"
+    [[ 0 -eq ${UID} ]] && PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}%{$(echoti setaf 196)%}"
     PR_STUFF[ROOT_BG]="%{$(echoti setab 196)%}"
 else
     ## if the term doesn't support 256 colors
@@ -578,8 +590,8 @@ else
     PR_STUFF[UPTIME_LOAD_LOW]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_GREEN]}"
     PR_STUFF[UPTIME_LOAD_MED]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_YELLOW]}"
     PR_STUFF[UPTIME_LOAD_HI]="${PR_STUFF[BG_PS]}${PR_STUFF[LIGHT_RED]}"
-    	PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[BLACK]}"
-    	[[ 0 -eq ${UID} ]] && PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[RED]}"
+    PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[BLACK]}"
+    [[ 0 -eq ${UID} ]] && PR_STUFF[PS1_LINE]="${PR_STUFF[BG_PS]}${PR_STUFF[RED]}"
     PR_STUFF[ROOT_BG]="$PR_STUFF[BG_LIGHT_RED]"
 fi
 
