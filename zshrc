@@ -22,7 +22,7 @@ export CABAL_HOME="/Users/neo/.cabal"
 export STORM_HOME="/Users/neo/Code/Repo/storm"
 
 # using jenv to manage Java VMs
-export JENV_ROOT=/usr/local/opt/jenv
+export JENV_ROOT=/Users/neo/.jenv
 
 export PATH="$CABAL_HOME/bin:$PATH:$ANDROID/SDK/platform-tools:$ANDROID/SDK/tools:$STORM_HOME/bin:$JENV_ROOT/bin:"
 
@@ -55,10 +55,13 @@ alias x='exit'
 
 # remote ssh shortcuts
 alias blackhole='ssh neo@blackhole.local'
-# alias linode='ssh neo@paradigmx.net'
-# alias linode2='ssh neo@codearena.org'
-alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
-alias linode2='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
+# alias paradigmx='ssh neo@paradigmx.net'
+# alias codearena='ssh neo@codearena.org'
+alias paradigmx='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
+alias codearena='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
+
+# alias ucloud='ssh neo@61.153.100.178'
+alias ucloud='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@61.153.100.178 -- tmux a'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
