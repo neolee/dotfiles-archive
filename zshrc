@@ -83,7 +83,8 @@ alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
 alias npmls='npm ls "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
 alias npmlsg='npm ls -g "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
 alias gitls='git ls-files | xargs wc -l'
-alias pip-update='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
+alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
+alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
 
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
