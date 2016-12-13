@@ -1,6 +1,12 @@
 # iterm shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
+## oh-my-zsh settings
+export ZSH=/Users/neo/.oh-my-zsh
+ZSH_THEME="agnoster"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
 ## my own stuff
 
 ## customized environment variables
@@ -154,12 +160,6 @@ case $TERM in (xterm*)
 	bindkey '\e[H' beginning-of-line
 	bindkey '\e[F' end-of-line ;;
 esac
-
-## oh-my-zsh settings
-export ZSH=/Users/neo/.oh-my-zsh
-ZSH_THEME="agnoster"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
 
 ## display some stuff when the shell starts
 print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}
