@@ -2,7 +2,7 @@
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
 ## oh-my-zsh settings
-export ZSH=/Users/neo/.oh-my-zsh
+export ZSH="/Users/neo/.oh-my-zsh"
 ZSH_THEME="agnoster"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
@@ -28,11 +28,12 @@ export GOPATH="/Users/neo/Code/Go/Packages"
 export ANDROID="/Users/neo/Library/Android/sdk"
 export CABAL_HOME="/Users/neo/.cabal"
 export STORM_HOME="/Users/neo/Code/Repo/storm"
+export ANACONDA_HOME="/Users/neo/Code/Anaconda3"
 
 # using jenv to manage Java VMs
-export JENV_ROOT=/Users/neo/.jenv
+export JENV_ROOT="/Users/neo/.jenv"
 
-export PATH="$PATH:$STORM_HOME/bin:$CABAL_HOME/bin:$GOPATH/bin:$ANDROID/platform-tools:$ANDROID/tools:$JENV_ROOT/bin:$HOME/.rvm/bin"
+export PATH="$PATH:$GOPATH/bin:$ANDROID/platform-tools:$ANDROID/tools:$JENV_ROOT/bin:$HOME/.rvm/bin:$STORM_HOME/bin:$CABAL_HOME/bin"
 
 ## compiler setting for Homebrew
 export HOMEBREW="/usr/local"
@@ -100,8 +101,10 @@ alias gitls='git ls-files | xargs wc -l'
 alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
 alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip_pypy install -U'
 alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
-
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
+
+alias tf-activate='source ~/Code/Tensorflow/bin/activate'
+alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 # fix: for issue in Octopress vs. zsh
 alias rake='noglob rake'
