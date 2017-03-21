@@ -4,41 +4,36 @@ ZSH_THEME="agnoster"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-## my own stuff
-
 ## customized environment variables
 
 ## locales hacking, used only on special issue
 # export LC_ALL="C"
 export LC_ALL="en_US.UTF-8"
 
-export PATH="$PATH"
+## envs and paths
+export CUDA_ROOT="/usr/local/cuda"
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+export PATH="$CUDA_ROOT/bin:$PATH"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64"
 
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'
 alias l='ls -l'
 alias ll='ls -la'
-alias psgrep='ps -all -A | grep'
 alias diff='colordiff'
 alias x='exit'
 
-# misc
 alias npmls='npm ls "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
 alias npmlsg='npm ls -g "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
 alias gitls='git ls-files | xargs wc -l'
 alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
-alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip_pypy install -U'
 
-alias tf-activate='source ~/Code/Tensorflow/bin/activate'
+alias tf-activate='source /home/neo/tensorflow/bin/activate'
 alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
-## zsh global alias
-alias -g '...'='../..'
-alias -g '....'='../../..'
-alias -g '.....'='../../../..'
+alias theano-activate='source /home/neo/theano/bin/activate'
 
 ## display some stuff when the shell starts
 print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}
