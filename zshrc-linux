@@ -19,9 +19,8 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'
-alias ls='ls -w'
-alias l='ls -wl'
-alias ll='ls -wla'
+alias l='ls -l'
+alias ll='ls -la'
 alias psgrep='ps -all -A | grep'
 alias diff='colordiff'
 alias x='exit'
