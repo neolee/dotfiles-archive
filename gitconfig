@@ -1,6 +1,8 @@
 [user]
 	name = Neo Lee
 	email = neo.lee@gmail.com
+[push]
+	default = simple
 [alias] 
   ci = commit
   co = checkout
