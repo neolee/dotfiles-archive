@@ -17,6 +17,8 @@ export PATH="$HOME/bin:$CUDA_ROOT/bin:$PATH"
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64"
 
+export TF_CPP_MIN_LOG_LEVEL="3"
+
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'
