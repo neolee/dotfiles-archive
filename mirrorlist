@@ -1,0 +1,7 @@
+##
+## Arch Linux repository mirrorlist
+##
+
+## China
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
