@@ -42,15 +42,17 @@ export HOMEBREW="/usr/local"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
 # export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
 
-## Docker config
+## docker config
 export DOCKER_HOST="tcp://192.168.99.100:2376"
 export DOCKER_CERT_PATH="/Users/neo/.docker/machine/machines/default"
 export DOCKER_TLS_VERIFY=1
 
+## tensorflow config
+export TF_CPP_MIN_LOG_LEVEL=3
+
+## other config
 export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig
-
 export NODE_PATH="/usr/local/lib/node_modules"
-
 export RI="--format ansi -T"
 
 unalias run-help
@@ -69,13 +71,13 @@ alias x='exit'
 
 # remote ssh shortcuts
 alias blackhole='ssh neo@blackhole.local'
+alias zion='ssh neo@10.0.0.2 -p 12381'
+alias neoix='ssh neo@192.168.99.100 -p 12810'
+
 # alias paradigmx='ssh neo@paradigmx.net'
 # alias codearena='ssh neo@codearena.org'
 alias paradigmx='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
 alias codearena='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
-
-# alias ucloud='ssh neo@61.153.100.178'
-alias ucloud='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@61.153.100.178 -- tmux a'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
@@ -103,7 +105,8 @@ alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1
 alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
-alias tf-activate='source ~/Code/Tensorflow/bin/activate'
+alias tf-activate='source ~/Code/Python/Env/tensorflow/bin/activate'
+alias tf3-activate='source ~/Code/Python/Env/tensorflow3/bin/activate'
 alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 # fix: for issue in Octopress vs. zsh
