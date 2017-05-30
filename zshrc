@@ -1,5 +1,12 @@
+# term compatible
+export TERM="xterm-256color"
+
 # iterm shell integration
-source ~/.iterm2_shell_integration.`basename $SHELL`
+if [[ -n `basename $SHELL` ]]; then
+  source ~/.iterm2_shell_integration.`basename $SHELL`
+else
+  source ~/.iterm2_shell_integration.zsh
+fi
 
 ## oh-my-zsh settings
 export ZSH="/Users/neo/.oh-my-zsh"
@@ -48,16 +55,17 @@ export LESSEDIT="/usr/local/bin/mate -l %lm %f"
 # export SVN_EDITOR="/usr/local/bin/subl -w"
 # export LESSEDIT="/usr/local/bin/subl %f"
 
-export GOPATH="/Users/neo/Code/Go/Packages"
 export ANDROID="/Users/neo/Library/Android/sdk"
+export ANACONDA_HOME="/Users/neo/Code/Python/Env/anaconda2"
+export PYTHONPATH="/usr/local" # for Caffe2
 export CABAL_HOME="/Users/neo/.cabal"
 export STORM_HOME="/Users/neo/Code/Repo/storm"
-export ANACONDA_HOME="/Users/neo/Code/Anaconda3"
+export CARGO_HOME="/Users/neo/.cargo"
 
 # using jenv to manage Java VMs
 export JENV_ROOT="/Users/neo/.jenv"
 
-export PATH="$PATH:$GOPATH/bin:$ANDROID/platform-tools:$ANDROID/tools:$JENV_ROOT/bin:$HOME/.rvm/bin:$STORM_HOME/bin:$CABAL_HOME/bin"
+export PATH="$PATH:$ANDROID/platform-tools:$ANDROID/tools:$JENV_ROOT/bin:$HOME/.rvm/bin:$CABAL_HOME/bin:$CARGO_HOME/bin"
 
 ## compiler setting for Homebrew
 export HOMEBREW="/usr/local"
@@ -121,8 +129,8 @@ alias s='subl -n'
 alias u8='unicorn -p 8000'
 alias u8d='unicorn -p 8000 -D'
 alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
-alias npmls='npm ls "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
-alias npmlsg='npm ls -g "$@" | grep "^[└├]" | sed "s/─┬/──/g"'
+alias npmls='npm list --depth=0'
+alias npmlsg='npm list -g --depth=0'
 alias gitls='git ls-files | xargs wc -l'
 alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
 alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip_pypy install -U'
