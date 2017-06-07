@@ -23,6 +23,9 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX='\uf0da'
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL9K_HOME_ICON='\uf015 '
+POWERLEVEL9K_HOME_SUB_ICON='\uf07c '
+POWERLEVEL9K_FOLDER_ICON='\uf115 '
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon context dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time load ram background_jobs virtualenv rbenv rvm)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv)
@@ -121,7 +124,7 @@ alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/L
 # editors
 alias es='/usr/local/bin/emacs --daemon'
 alias esquit="/usr/local/bin/emacsclient -e '(kill-emacs)'"
-alias emacs='/usr/local/bin/emacsclient -c -n'
+alias ec='/usr/local/bin/emacsclient'
 alias e='mate'
 alias s='subl -n'
 
