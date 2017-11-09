@@ -1,3 +1,6 @@
+## term compatible
+export TERM="xterm-256color"
+
 ## iterm shell integration
 if [[ -n `basename $SHELL` ]]; then
   source ~/.iterm2_shell_integration.`basename $SHELL`
@@ -5,7 +8,39 @@ else
   source ~/.iterm2_shell_integration.zsh
 fi
 
-## oh-my-zsh init
+## oh-my-zsh
+export ZSH="/Users/neo/.oh-my-zsh"
+
+# themes setting for powerlevel9k
+POWERLEVEL9K_MODE='nerdfont-fontconfig'
+POWERLEVEL9K_BATTERY_CHARGING='yellow'
+POWERLEVEL9K_BATTERY_CHARGED='green'
+POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
+POWERLEVEL9K_BATTERY_LOW_COLOR='red'
+POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX='\uf0da'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL9K_HOME_ICON='\uf015 '
+POWERLEVEL9K_HOME_SUB_ICON='\uf07c '
+POWERLEVEL9K_FOLDER_ICON='\uf115 '
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon context dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time load ram background_jobs virtualenv rbenv rvm)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv)
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+# POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m.%d.%y}"
+POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073  %m-%d}"
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="agnoster"
+plugins=(git)
+
+# oh-my-zsh init
 source $ZSH/oh-my-zsh.sh
 
 ## zsh init
@@ -66,15 +101,15 @@ alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 # fix: for issue in Octopress vs. zsh
 alias rake='noglob rake'
 
-## zsh global alias
+# global alias
 alias -g '...'='../..'
 alias -g '....'='../../..'
 alias -g '.....'='../../../..'
 
-## zsh path alias
+# path alias
 # hash -d mrp="/Users/neo/Code/Repo/mrp"
 
-## zsh completion setting
+## completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -110,7 +145,7 @@ local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*' hosts $_myhosts
 
-# enable HOME & END key
+## enable HOME & END key
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 case $TERM in (xterm*)
