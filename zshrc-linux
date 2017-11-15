@@ -4,21 +4,7 @@ ZSH_THEME="agnoster"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-## customized environment variables
-
-## locales hacking, used only on special issue
-# export LC_ALL="C"
-export LC_ALL="en_US.UTF-8"
-
-## path
-export CUDA_ROOT="/usr/local/cuda"
-export PATH="$HOME/bin:$CUDA_ROOT/bin:$PATH"
-
-## other env
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64"
-export TF_CPP_MIN_LOG_LEVEL=3
-
-## customized command alias
+## alias
 alias grep='grep --color'
 alias rm='rm -i'
 alias l='ls -l'
@@ -34,11 +20,11 @@ alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs 
 alias reset-wifi='sudo service network-manager restart'
 
 alias tf-activate='source /home/neo/python/env/tensorflow/bin/activate'
-alias tf3-activate='source /home/neo/python/env/tensorflow3/bin/activate'
 alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 ## only for vm which not support gpu acceleration
 # alias code='code --disable-gpu -r'
+# alias e='code'
 
 ## keychain
 keychain id_rsa
