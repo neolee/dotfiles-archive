@@ -323,6 +323,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Prevent color glitches in spaceline
+  (setq ns-use-srgb-colorspace nil)
+
   ;; Helm configurations
   (setq projectile-use-git-grep 1) ; Don't grep files listed in .gitignore
 
