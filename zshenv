@@ -15,13 +15,10 @@ export LESSEDIT="/usr/local/bin/mate -l %lm %f"
 ## environment variables
 export ANDROID="/Users/neo/Library/Android/sdk"
 export GO_HOME="/usr/local/opt/go"
-export ANACONDA_HOME="/Users/neo/Code/Python/Env/anaconda2"
 export CABAL_HOME="/Users/neo/.cabal"
-export STORM_HOME="/Users/neo/Code/Repo/storm"
 export CARGO_HOME="/Users/neo/.cargo"
-
-## java
-export JAVA_HOME="`/usr/libexec/java_home -v 1.8.0`"
+export STORM_HOME="/Users/neo/Code/Repo/storm"
+export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
 
 export PATH="$PATH:$ANDROID/platform-tools:$ANDROID/tools:$GO_HOME/libexec/bin:$CABAL_HOME/bin:$CARGO_HOME/bin"
 
@@ -43,7 +40,7 @@ export DOCKER_CERT_PATH="/Users/neo/.docker/machine/machines/default"
 export DOCKER_TLS_VERIFY=1
 
 ## tensorflow config
-export TF_CPP_MIN_LOG_LEVEL=3
+# export TF_CPP_MIN_LOG_LEVEL=3
 
 ## other config
 export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig
