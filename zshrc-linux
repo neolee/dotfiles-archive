@@ -19,7 +19,7 @@ alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs 
 
 alias reset-wifi='sudo service network-manager restart'
 
-alias tf-activate='source /home/neo/python/env/tensorflow/bin/activate'
+alias tf-activate='source /home/neo/python/env/tf-py3-tm/bin/activate'
 alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 ## only for vm which not support gpu acceleration
