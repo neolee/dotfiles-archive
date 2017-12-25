@@ -9,7 +9,7 @@ export PATH="$HOME/bin:$CUDA_ROOT/bin:$PATH"
 ## python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 export WORKON_HOME="$HOME/.envs"
-export PROJECT_HOME="$HOME/python"
+export PROJECT_HOME="$HOME/repo"
 source /usr/local/bin/virtualenvwrapper.sh
 
 ## other env
