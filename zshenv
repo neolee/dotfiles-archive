@@ -22,22 +22,23 @@ export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
 
 export PATH="$PATH:$ANDROID/platform-tools:$ANDROID/tools:$GO_HOME/libexec/bin:$CABAL_HOME/bin:$CARGO_HOME/bin"
 
-## compiler setting for Homebrew
+## compiler setting for homebrew
 export HOMEBREW="/usr/local"
 # export LD_LIBRARY_PATH="$HOMEBREW/lib:/usr/lib"
 # export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
 # export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
 
+## python virtualenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
+export WORKON_HOME="$HOME/.envs"
+export PROJECT_HOME="$HOME/Code/Python/Projects"
+source /usr/local/bin/virtualenvwrapper.sh
+
 ## library for Intel MKL
 # export MKL_ROOT="/opt/intel/mkl"
 # export LD_LIBRARY_PATH="$MKL_ROOT/lib：$LD_LIBRARY_PATH"
 # export DYLD_LIBRARY_PATH="$MKL_ROOT/lib:$DYLD_LIBRARY_PATH"
-
-## docker config
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="/Users/neo/.docker/machine/machines/default"
-export DOCKER_TLS_VERIFY=1
 
 ## tensorflow config
 # export TF_CPP_MIN_LOG_LEVEL=3

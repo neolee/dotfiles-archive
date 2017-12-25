@@ -78,7 +78,7 @@ alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/L
 # editors
 alias es='/usr/local/bin/emacs --daemon'
 alias esquit="/usr/local/bin/emacsclient -e '(kill-emacs)'"
-alias ec='/usr/local/bin/emacsclient'
+alias ec='/usr/local/bin/emacsclient-wrapper'
 alias e='mate'
 alias s='subl -n'
 
@@ -94,8 +94,7 @@ alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1
 alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
-alias tf-activate='source ~/Code/Python/Env/tf-py3-tm/bin/activate'
-alias tf2-activate='source ~/Code/Python/Env/tf-py2-tm/bin/activate'
+alias tf-activate='workon tensorflow'
 alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 # fix: for issue in Octopress vs. zsh

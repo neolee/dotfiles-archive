@@ -6,6 +6,12 @@ export LC_ALL="en_US.UTF-8"
 export CUDA_ROOT="/usr/local/cuda"
 export PATH="$HOME/bin:$CUDA_ROOT/bin:$PATH"
 
+## python virtualenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+export WORKON_HOME="$HOME/.envs"
+export PROJECT_HOME="$HOME/python"
+source /usr/local/bin/virtualenvwrapper.sh
+
 ## other env
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64:/usr/local/lib"
 export TF_CPP_MIN_LOG_LEVEL=3
