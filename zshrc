@@ -1,3 +1,6 @@
+## emacs tramp fix
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
 ## term compatible
 export TERM="xterm-256color"
 
@@ -67,6 +70,7 @@ alias neoix='ssh neo@192.168.99.100 -p 12810'
 # alias codearena='ssh neo@codearena.org'
 alias paradigmx='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
 alias codearena='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
+alias arch='ssh neo@192.168.99.100'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
@@ -90,7 +94,6 @@ alias npmls='npm list --depth=0'
 alias npmlsg='npm list -g --depth=0'
 alias gitls='git ls-files | xargs wc -l'
 alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
-alias pip_pypy-upgrade='pip_pypy freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip_pypy install -U'
 alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
