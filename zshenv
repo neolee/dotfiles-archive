@@ -17,10 +17,16 @@ export ANDROID="/Users/neo/Library/Android/sdk"
 export GO_HOME="/usr/local/opt/go"
 export CABAL_HOME="/Users/neo/.cabal"
 export CARGO_HOME="/Users/neo/.cargo"
-export STORM_HOME="/Users/neo/Code/Repo/storm"
+
 export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
 
-export PATH="$PATH:$ANDROID/platform-tools:$ANDROID/tools:$GO_HOME/libexec/bin:$CABAL_HOME/bin:$CARGO_HOME/bin"
+export GOPATH="$HOME/Code/Go/Packages"
+export GOBIN="$GOPATH/bin"
+
+export DSCL_TOOLS="/Users/neo/Code/Repo/ds-cmdline/tools"
+export USER_TOOLS="$DSCL_TOOLS"
+
+export PATH="$PATH:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS"
 
 ## compiler setting for homebrew
 export HOMEBREW="/usr/local"

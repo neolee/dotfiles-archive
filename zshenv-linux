@@ -4,7 +4,11 @@ export LC_ALL="en_US.UTF-8"
 
 ## path
 export CUDA_ROOT="/usr/local/cuda"
-export PATH="$HOME/bin:$CUDA_ROOT/bin:$PATH"
+
+export DSCL_TOOLS="/home/neo/repo/ds-cmdline/tools"
+export USER_TOOLS="$HOME/bin:$DSCL_TOOLS"
+
+export PATH="$CUDA_ROOT/bin:$PATH:$USER_TOOLS"
 
 ## python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"

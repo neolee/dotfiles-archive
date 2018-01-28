@@ -62,15 +62,11 @@ alias diff='colordiff'
 alias x='exit'
 
 # remote ssh shortcuts
-alias blackhole='ssh neo@blackhole.local'
 alias zion='ssh neo@10.0.0.2 -p 12381'
-alias neoix='ssh neo@192.168.99.100 -p 12810'
-
-# alias paradigmx='ssh neo@paradigmx.net'
-# alias codearena='ssh neo@codearena.org'
-alias paradigmx='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
-alias codearena='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@codearena.org -- tmux a'
 alias arch='ssh neo@192.168.99.100'
+
+alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
+alias vultr='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@soulh.us -- tmux a'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
@@ -98,17 +94,18 @@ alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' |
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
 alias tf-activate='workon tensorflow'
-alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 # fix: for issue in Octopress vs. zsh
 alias rake='noglob rake'
 
-# global alias
+# mock display command(from imagemagick) with Preview.app
+alias -g 'display'='open -a Preview.app -f'
+
+# shortcuts
 alias -g '...'='../..'
 alias -g '....'='../../..'
 alias -g '.....'='../../../..'
-
-# path alias
+ 
 # hash -d mrp="/Users/neo/Code/Repo/mrp"
 
 ## completions
