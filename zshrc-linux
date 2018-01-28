@@ -29,7 +29,7 @@ alias tf-activate='workon tensorflow'
 # alias e='code'
 
 ## keychain
-keychain id_rsa
+keychain id_ed25519
 source ~/.keychain/`uname -n`-sh
 
 ## display some stuff when the shell starts
