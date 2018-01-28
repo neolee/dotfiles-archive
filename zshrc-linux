@@ -23,14 +23,13 @@ alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs 
 alias reset-wifi='sudo service network-manager restart'
 
 alias tf-activate='workon tensorflow'
-alias tensorboard='tensorboard --logdir /tmp/tensorflow_logs/example'
 
 ## only for vm which not support gpu acceleration
 # alias code='code --disable-gpu -r'
 # alias e='code'
 
 ## keychain
-keychain id_ed25519
+keychain id_rsa
 source ~/.keychain/`uname -n`-sh
 
 ## display some stuff when the shell starts
