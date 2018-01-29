@@ -1,9 +1,9 @@
 ## emacs tramp fix
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+[[ $TERM == 'dumb' ]] && unsetopt zle && PS1='$ ' && return
 
 ## oh-my-zsh settings
-export ZSH="/home/neo/.oh-my-zsh"
-ZSH_THEME="agnoster"
+export ZSH='/home/neo/.oh-my-zsh'
+ZSH_THEME='agnoster'
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
