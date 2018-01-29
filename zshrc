@@ -1,8 +1,8 @@
 ## emacs tramp fix
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+[[ $TERM == 'dumb' ]] && unsetopt zle && PS1='$ ' && return
 
 ## term compatible
-export TERM="xterm-256color"
+export TERM='xterm-256color'
 
 ## iterm shell integration
 if [[ -n `basename $SHELL` ]]; then
@@ -12,7 +12,7 @@ else
 fi
 
 ## oh-my-zsh
-export ZSH="/Users/neo/.oh-my-zsh"
+export ZSH='/Users/neo/.oh-my-zsh'
 
 # themes setting for powerlevel9k
 POWERLEVEL9K_MODE='nerdfont-fontconfig'
@@ -32,15 +32,15 @@ POWERLEVEL9K_FOLDER_ICON='\uf115 '
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon context dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time load ram background_jobs virtualenv rbenv rvm)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv)
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 # POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %m.%d.%y}"
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073  %m-%d}"
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
-# ZSH_THEME="agnoster"
+ZSH_THEME='powerlevel9k/powerlevel9k'
+# ZSH_THEME='agnoster'
 plugins=(git)
 
 # oh-my-zsh init
@@ -77,7 +77,7 @@ alias rebuildreg='/System/Library/Frameworks/CoreServices.framework/Frameworks/L
 
 # editors
 alias es='/usr/local/bin/emacs --daemon'
-alias esquit="/usr/local/bin/emacsclient -e '(kill-emacs)'"
+alias esquit='/usr/local/bin/emacsclient -e "(kill-emacs)"'
 alias ec='/usr/local/bin/emacsclient-wrapper'
 alias e='mate'
 alias s='subl -n'
@@ -85,12 +85,11 @@ alias s='subl -n'
 # misc
 alias u8='unicorn -p 8000'
 alias u8d='unicorn -p 8000 -D'
-alias closure-compiler='JENV_VERSION=oracle64-1.8.0 closure-compiler'
 alias npmls='npm list --depth=0'
 alias npmlsg='npm list -g --depth=0'
 alias gitls='git ls-files | xargs wc -l'
 alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
-alias cabal-upgrade="cabal list --simple-output --installed | awk '{print $1}' | uniq | xargs -I {} cabal install {} --reinstall"
+alias cabal-upgrade='cabal list --simple-output --installed | awk "{print $1}" | uniq | xargs -I {} cabal install {} --reinstall'
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 
 alias tf-activate='workon tensorflow'
@@ -106,7 +105,7 @@ alias -g '...'='../..'
 alias -g '....'='../../..'
 alias -g '.....'='../../../..'
  
-# hash -d mrp="/Users/neo/Code/Repo/mrp"
+# hash -d mrp='/Users/neo/Code/Repo/mrp'
 
 ## completions
 fpath=(/usr/local/share/zsh-completions $fpath)
