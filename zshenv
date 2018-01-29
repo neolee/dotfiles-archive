@@ -1,10 +1,5 @@
 ## environment
 
-## locales hacking, used only on special issue
-# export LC_ALL='C'
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-
 ## command line editors
 export EDITOR="/usr/local/bin/mate -w"
 export SVN_EDITOR="/usr/local/bin/mate -w"

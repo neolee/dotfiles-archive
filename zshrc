@@ -1,6 +1,11 @@
 ## emacs tramp fix
 [[ $TERM == 'dumb' ]] && unsetopt zle && PS1='$ ' && return
 
+## locales
+# export LC_ALL='C'
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
 ## term compatible
 export TERM='xterm-256color'
 
