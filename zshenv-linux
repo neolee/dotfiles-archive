@@ -1,20 +1,22 @@
 ## locales hacking, used only on special issue
-# export LC_ALL='C'
-export LANG='enUS.UTF-8'
-export LC_ALL='en_US.UTF-8'
+# export LC_ALL="C"
+export LC_ALL="en_US.UTF-8"
 
 ## path
-export CUDA_ROOT='/usr/local/cuda'
-export GOPATH='/home/neo/go'
+export CUDA_ROOT="/usr/local/cuda"
+export GOPATH="/home/neo/go"
 export GOBIN="$GOPATH/bin"
+export GHC_ROOT="/opt/ghc"
+export CABAL_HOME="/home/neo/.cabal"
 
-export DSCL_TOOLS='/home/neo/repo/ds-cmdline/tools'
+export DSCL_TOOLS="/home/neo/repo/ds-cmdline/tools"
 export USER_TOOLS="$GOBIN:$DSCL_TOOLS"
 
+# export PATH="$CUDA_ROOT/bin:$CABAL_HOME/bin:$GHC_ROOT/bin:$PATH:$USER_TOOLS"
 export PATH="$CUDA_ROOT/bin:$PATH:$USER_TOOLS"
 
 ## python virtualenv
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 export WORKON_HOME="$HOME/.envs"
 export PROJECT_HOME="$HOME/repo"
 source /usr/local/bin/virtualenvwrapper.sh
