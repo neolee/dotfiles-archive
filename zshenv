@@ -14,18 +14,22 @@ export CABAL_HOME="$HOME/.cabal"
 export CARGO_HOME="$HOME/.cargo"
 
 export GO_HOME='/usr/local/opt/go'
-export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
-
 export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
+
+export GRAAL_HOME="$HOME/Code/GraalVM/Contents/Home"
+
+export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
+# export JAVA_HOME="$GRAAL_HOME"
 
 export DSCL_TOOLS="$HOME/Code/Repo/ds-cmdline/tools"
 export USER_TOOLS="$DSCL_TOOLS"
 
-export PATH="$PATH:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS"
+export PATH="$PATH:$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS"
 
-## compiler setting for homebrew
+## setting for homebrew
 export HOMEBREW='/usr/local'
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 # export LD_LIBRARY_PATH="$HOMEBREW/lib:/usr/lib"
 # export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
@@ -43,7 +47,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # export DYLD_LIBRARY_PATH="$MKL_ROOT/lib:$DYLD_LIBRARY_PATH"
 
 ## tensorflow config
-# export TF_CPP_MIN_LOG_LEVEL=3
+export TF_CPP_MIN_LOG_LEVEL=3
 
 ## other config
 export PKG_CONFIG_PATH='/usr/X11/lib/pkgconfig'

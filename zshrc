@@ -71,7 +71,7 @@ alias zion='ssh neo@10.0.0.2 -p 12381'
 alias arch='ssh neo@192.168.99.100'
 
 alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
-alias vultr='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@soulh.us -- tmux a'
+alias daito='ssh neo@144.202.78.78'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
@@ -111,6 +111,15 @@ alias -g '....'='../../..'
 alias -g '.....'='../../../..'
  
 # hash -d mrp='/Users/neo/Code/Repo/mrp'
+
+## time format
+TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
+'avg shared (code):         %X KB'$'\n'\
+'avg unshared (data/stack): %D KB'$'\n'\
+'total (sum):               %K KB'$'\n'\
+'max memory:                %M KB'$'\n'\
+'page faults from disk:     %F'$'\n'\
+'other page faults:         %R'
 
 ## completions
 fpath=(/usr/local/share/zsh-completions $fpath)
