@@ -17,15 +17,18 @@ export GO_HOME='/usr/local/opt/go'
 export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
 
-export GRAAL_HOME="$HOME/Code/GraalVM/Contents/Home"
+export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.0.0/Contents/Home"
 
+## java config
+# GraalVM installed at /Library/Java/JavaVirtualMachines and 
+# has newer version than Java SE 8 (1.8.0_202)
 export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
-# export JAVA_HOME="$GRAAL_HOME"
+# export JAVA_HOME="`/usr/libexec/java_home -v 1.8.0_202`"
 
 export DSCL_TOOLS="$HOME/Code/Repo/ds-cmdline/tools"
 export USER_TOOLS="$DSCL_TOOLS"
 
-export PATH="$PATH:$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS"
+export PATH="$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
 
 ## setting for homebrew
 export HOMEBREW='/usr/local'
