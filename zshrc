@@ -46,7 +46,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
 ZSH_THEME='powerlevel9k/powerlevel9k'
 # ZSH_THEME='agnoster'
-plugins=(git)
+plugins=(git docker docker-compose)
 
 # oh-my-zsh init
 source $ZSH/oh-my-zsh.sh
@@ -65,6 +65,7 @@ alias ll='ls -Gwla'
 alias psgrep='ps -all -A |grep'
 alias diff='colordiff'
 alias x='exit'
+alias git='git --no-pager'
 
 # remote ssh shortcuts
 alias zion='ssh neo@10.0.0.2 -p 12381'
@@ -72,6 +73,9 @@ alias arch='ssh neo@192.168.99.100'
 
 alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
 alias daito='ssh neo@144.202.78.78'
+
+# maintenance
+alias lsports='sudo lsof -nP -i4TCP | grep LISTEN'
 
 # mac os x
 alias qlf='qlmanage -p "$@" >& /dev/null'
@@ -93,7 +97,8 @@ alias u8d='unicorn -p 8000 -D'
 alias npmls='npm list --depth=0'
 alias npmlsg='npm list -g --depth=0'
 alias gitls='git ls-files | xargs wc -l'
-alias pip-upgrade='pip freeze --local | grep -v "^\-e" | cut -d = -f 1  | xargs pip install -U'
+alias pip-upgrade='pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+alias pip3-upgrade='pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 alias cabal-upgrade='cabal list --simple-output --installed | awk "{print $1}" | uniq | xargs -I {} cabal install {} --reinstall'
 alias ihaskell='IHaskell notebook -i /usr/local/bin/ipython'
 

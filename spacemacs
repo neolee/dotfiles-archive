@@ -44,7 +44,7 @@ values."
                       auto-completion-private-snippets-directory nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
-                      haskell-completion-backend 'company-ghci)
+                      haskell-completion-backend 'intero)
      (better-defaults :variables
                       better-defaults-move-to-beginning-of-code-first t
                       better-defaults-move-to-end-of-code-first t)
@@ -55,7 +55,6 @@ values."
      git
      go
      (haskell :variables
-              haskell-completion-backend "intero"
               haskell-enable-hindent-style "johan-tibell")
      helm
      html

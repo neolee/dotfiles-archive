@@ -10,14 +10,12 @@ export LESSEDIT="/usr/local/bin/mate -l %lm %f"
 
 ## environment variables
 export ANDROID="$HOME/Library/Android/sdk"
-export CABAL_HOME="$HOME/.cabal"
-export CARGO_HOME="$HOME/.cargo"
 
 export GO_HOME='/usr/local/opt/go'
 export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
 
-export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.0.0/Contents/Home"
+export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.1.1/Contents/Home"
 
 ## java config
 # GraalVM installed at /Library/Java/JavaVirtualMachines and 
@@ -25,10 +23,11 @@ export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.0.0/Contents/Home"
 export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
 # export JAVA_HOME="`/usr/libexec/java_home -v 1.8.0_202`"
 
+export NPM_LOCAL_BIN="./node_modules/.bin"
 export DSCL_TOOLS="$HOME/Code/Repo/ds-cmdline/tools"
-export USER_TOOLS="$DSCL_TOOLS"
+export USER_TOOLS="$NPM_LOCAL_BIN:$DSCL_TOOLS"
 
-export PATH="$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$CABAL_HOME/bin:$CARGO_HOME/bin:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
+export PATH="$HOME/.local/bin:$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
 
 ## setting for homebrew
 export HOMEBREW='/usr/local'
@@ -37,6 +36,9 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 # export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
 # export C_INCLUDE_PATH="$HOMEBREW/include"
 # export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
+
+## python modules
+export PYTHONPATH="."
 
 ## python virtualenv
 export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3'
