@@ -2,7 +2,7 @@
 source /usr/local/share/antigen/antigen.zsh
 
 # load antigen configurations
-antigen init .antigenrc
+antigen init $HOME/.antigenrc
 
 ## customized command alias
 alias grep='grep --color'
