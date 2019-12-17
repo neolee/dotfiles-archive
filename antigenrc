@@ -1,0 +1,22 @@
+# load oh-my-zsh library
+antigen use oh-my-zsh
+
+# load bundles from the default repo (oh-my-zsh).
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle pip
+antigen bundle lein
+antigen bundle docker
+
+# load bundles from external repos.
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# select theme
+# antigen theme denysdovhan/spaceship-prompt
+source $HOME/.powerlevel9k
+antigen theme powerlevel9k/powerlevel9k
+
+# tell antigen that you're done
+antigen apply
