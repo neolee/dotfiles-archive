@@ -1,11 +1,9 @@
 ## emacs tramp fix
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-## oh-my-zsh settings
-export ZSH="/home/neo/.oh-my-zsh"
-ZSH_THEME="agnoster"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
+## load antigen
+source $HOME/repo/antigen/antigen.zsh
+antigen init $HOME/.antigenrc
 
 ## alias
 alias grep='grep --color'

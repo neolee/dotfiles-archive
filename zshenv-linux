@@ -23,4 +23,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 ## other env
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64:/usr/local/lib"
+
 export TF_CPP_MIN_LOG_LEVEL=3
+export TF_FORCE_GPU_ALLOW_GROWTH=true
