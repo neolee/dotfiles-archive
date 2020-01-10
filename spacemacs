@@ -332,6 +332,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
   ;;        ("org-cn"   . "https://elpa.emacs-china.org/org/")
   ;;        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+  
+  (setq exec-path-from-shell-arguments '("-l"))
   )
 
 (defun dotspacemacs/user-config ()

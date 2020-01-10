@@ -1,7 +1,3 @@
-## antigen init and config
-source /usr/local/share/antigen/antigen.zsh
-antigen init $HOME/.antigenrc
-
 ## environment
 
 ## command line editors

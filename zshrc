@@ -1,3 +1,7 @@
+## antigen init and config
+source /usr/local/share/antigen/antigen.zsh
+antigen init $HOME/.antigenrc
+
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'

@@ -1,10 +1,6 @@
 ## emacs tramp fix
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-## load antigen
-source $HOME/repo/antigen/antigen.zsh
-antigen init $HOME/.antigenrc
-
 ## alias
 alias grep='grep --color'
 alias rm='rm -i'
