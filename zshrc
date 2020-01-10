@@ -1,9 +1,3 @@
-# load antigen
-source /usr/local/share/antigen/antigen.zsh
-
-# load antigen configurations
-antigen init $HOME/.antigenrc
-
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'
@@ -20,7 +14,7 @@ alias zion='ssh neo@10.0.0.2 -p 12381'
 alias arch='ssh neo@192.168.99.100'
 
 alias linode='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@paradigmx.net -- tmux a'
-alias daito='ssh neo@144.202.78.78'
+alias daito='mosh --client=/usr/local/bin/mosh-client --server=/usr/bin/mosh-server neo@daito.paradigmx.net -- tmux a'
 
 # maintenance
 alias lsports='sudo lsof -nP -i4TCP | grep LISTEN'
@@ -71,6 +65,10 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 
 ## completions
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+## rbenv init
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# eval "$(rbenv init -)"
 
 ## display some stuff when the shell starts
 print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}

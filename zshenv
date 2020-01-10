@@ -1,3 +1,7 @@
+## antigen init and config
+source /usr/local/share/antigen/antigen.zsh
+antigen init $HOME/.antigenrc
+
 ## environment
 
 ## command line editors
@@ -24,6 +28,9 @@ export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.2.1/Contents/Home"
 export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
 # export JAVA_HOME="`/usr/libexec/java_home -v 1.8.0_202`"
 # export JAVA_HOME="`/usr/libexec/java_home -v 11`"
+
+# rbenv config
+# export RBENV_HOME="$HOME/.rbenv"
 
 ## rust config
 export CARGO_HOME="$HOME/.cargo"
