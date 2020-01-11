@@ -7,7 +7,7 @@
                      refactor-nrepl.plugin/middleware
                      ]
         :plugins [
-                  [cider/cider-nrepl "0.22.4"]
+                  [cider/cider-nrepl "0.23.0-SNAPSHOT"]
                   [refactor-nrepl "2.5.0-SNAPSHOT"]
                   [clj-http "3.10.0"]
                   [lein-ancient "0.6.15"]
