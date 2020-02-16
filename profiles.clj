@@ -12,7 +12,7 @@
                        [org.clojure/tools.nrepl "0.2.13"]]
         :middleware [cider-nrepl.plugin/middleware
                      refactor-nrepl.plugin/middleware]
-        :plugins [[cider/cider-nrepl "0.23.0-SNAPSHOT"]
+        :plugins [[cider/cider-nrepl "0.24.0"]
                   [refactor-nrepl "2.5.0-SNAPSHOT"]
                   [clj-http "3.10.0"]
                   [lein-ancient "0.6.15"]
