@@ -80,7 +80,22 @@ function Show-ColorTable
 }
 Set-Alias -Name colors -Value Show-ColorTable
 
+# Env variables
+$Env:WORKON_HOME = $Env:USERPROFILE + "\PyEnvs"
+
+# Import 3rd party modules
+Import-Module -Name VirtualEnvWrapper
+
 # We don't need these any more; they were just temporary variables to get to $isAdmin. 
 # Delete them to prevent cluttering up the user profile. 
 Remove-Variable identity
 Remove-Variable principal
+
+# Enable oh-my-posh
+Import-Module posh-git
+Import-Module oh-my-posh
+Set-Theme paradox
+
+# Navigation in command history
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
