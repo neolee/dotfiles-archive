@@ -15,8 +15,8 @@ export GO_HOME='/usr/local/opt/go'
 export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
 
-export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-19.2.1/Contents/Home"
-# export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java11-19.3.0/Contents/Home"
+export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java8-21.0.0.2/Contents/Home"
+# export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java11-21.0.0.2/Contents/Home"
 
 ## java config
 # GraalVM installed at /Library/Java/JavaVirtualMachines and 
