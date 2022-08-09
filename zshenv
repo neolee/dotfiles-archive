@@ -11,22 +11,18 @@ export LESSEDIT="/usr/local/bin/mate -l %lm %f"
 ## environment variables
 export ANDROID="$HOME/Library/Android/sdk"
 
-export GO_HOME='/usr/local/opt/go'
+export GO_HOME='/opt/homebrew/bin/go'
 export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
 
-export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java8-21.0.0.2/Contents/Home"
-# export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java11-21.0.0.2/Contents/Home"
-
 ## java config
-# GraalVM installed at /Library/Java/JavaVirtualMachines and 
-# has newer version than Java SE 8 (1.8.0_202)
-export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
-# export JAVA_HOME="`/usr/libexec/java_home -v 1.8.0_202`"
+# ↓↓↓ 17.0.4 (arm64) "Oracle Corporation" - "GraalVM EE 22.2.0" ↓↓↓
+export JAVA_HOME="`/usr/libexec/java_home`"
+# ↓↓↓ 11.0.16 (arm64) "Homebrew" - "OpenJDK 11.0.16" ↓↓↓
 # export JAVA_HOME="`/usr/libexec/java_home -v 11`"
 
-# rbenv config
-# export RBENV_HOME="$HOME/.rbenv"
+# export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java11-22.2.0/Contents/Home"
+export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java17-22.2.0/Contents/Home"
 
 ## rust config
 export CARGO_HOME="$HOME/.cargo"
@@ -38,21 +34,19 @@ export USER_TOOLS="$NPM_LOCAL_BIN:$DSCL_TOOLS"
 export PATH="$HOME/.local/bin:$GRAAL_HOME/bin:$CARGO_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
 
 ## setting for homebrew
-export HOMEBREW='/usr/local'
 export HOMEBREW_NO_INSTALL_CLEANUP=1
-# export LD_LIBRARY_PATH="$HOMEBREW/lib:/usr/lib"
-# export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW/lib"
-# export C_INCLUDE_PATH="$HOMEBREW/include"
-# export CPLUS_INCLUDE_PATH="$HOMEBREW/include"
+
+## for graalvm's llvm toolchain
+export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
 
 ## python modules
 export PYTHONPATH="."
 
 ## python virtualenv
-export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3'
+export VIRTUALENVWRAPPER_PYTHON='/opt/homebrew/bin/python3'
 export WORKON_HOME="$HOME/.envs"
 export PROJECT_HOME="$HOME/Code/Python/Projects"
-source /usr/local/bin/virtualenvwrapper.sh
+source /opt/homebrew/bin/virtualenvwrapper.sh
 
 ## library for Intel MKL
 # export MKL_ROOT='/opt/intel/mkl'
@@ -64,5 +58,5 @@ export TF_CPP_MIN_LOG_LEVEL=3
 
 ## other config
 export PKG_CONFIG_PATH='/usr/X11/lib/pkgconfig'
-export NODE_PATH='/usr/local/lib/node_modules'
+export NODE_PATH='/opt/homebrew/lib/node_modules'
 export RI='--format ansi -T'
