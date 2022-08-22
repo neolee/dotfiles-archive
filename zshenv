@@ -16,47 +16,57 @@ export GOPATH="$HOME/Code/Go/Packages"
 export GOBIN="$GOPATH/bin"
 
 ## java config
+# ↓↓↓ 18.0.2 (arm64) "Homebrew" - "OpenJDK 18.0.2" ↓↓↓
+# export JAVA_HOME="`/usr/libexec/java_home`"
 # ↓↓↓ 17.0.4 (arm64) "Oracle Corporation" - "GraalVM EE 22.2.0" ↓↓↓
-export JAVA_HOME="`/usr/libexec/java_home`"
-# ↓↓↓ 11.0.16 (arm64) "Homebrew" - "OpenJDK 11.0.16" ↓↓↓
+export JAVA_HOME="`/usr/libexec/java_home -v 17`"
+# ↓↓↓ 11.0.16.1 (arm64) "Homebrew" - "OpenJDK 11.0.16.1" ↓↓↓
 # export JAVA_HOME="`/usr/libexec/java_home -v 11`"
 
 # export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java11-22.2.0/Contents/Home"
 export GRAAL_HOME="$HOME/Code/GraalVM/VM/graalvm-ee-java17-22.2.0/Contents/Home"
 
-## rust config
-export CARGO_HOME="$HOME/.cargo"
-
+## other path elements
 export NPM_LOCAL_BIN="./node_modules/.bin"
 export DSCL_TOOLS="$HOME/Code/Repo/ds-cmdline/tools"
 export USER_TOOLS="$NPM_LOCAL_BIN:$DSCL_TOOLS"
 
 export PATH="$HOME/.local/bin:$GRAAL_HOME/bin:$CARGO_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
 
-## setting for homebrew
-export HOMEBREW_NO_INSTALL_CLEANUP=1
-
 ## for graalvm's llvm toolchain
 export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
 
-## python modules
-export PYTHONPATH="."
+## rust
+source "$HOME/.cargo/env"
 
-## python virtualenv
-export VIRTUALENVWRAPPER_PYTHON='/opt/homebrew/bin/python3'
+## python
+# modules
+export PYTHONPATH="."
+# virtualenv
+export VIRTUALENVWRAPPER_PYTHON='/opt/homebrew/bin/python'
 export WORKON_HOME="$HOME/.envs"
 export PROJECT_HOME="$HOME/Code/Python/Projects"
 source /opt/homebrew/bin/virtualenvwrapper.sh
 
-## library for Intel MKL
-# export MKL_ROOT='/opt/intel/mkl'
-# export LD_LIBRARY_PATH="$MKL_ROOT/lib：$LD_LIBRARY_PATH"
-# export DYLD_LIBRARY_PATH="$MKL_ROOT/lib:$DYLD_LIBRARY_PATH"
+## rbenv init
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# eval "$(rbenv init -)"
 
-## tensorflow config
+## tensorflow
 export TF_CPP_MIN_LOG_LEVEL=3
 
 ## other config
 export PKG_CONFIG_PATH='/usr/X11/lib/pkgconfig'
 export NODE_PATH='/opt/homebrew/lib/node_modules'
 export RI='--format ansi -T'
+
+## iterm2 shell integration
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## homebrew init
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# homebrew config
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"
+export INCLUDE_PATH="INCLUDE_PATH:$(brew --prefix)/include"
+

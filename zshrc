@@ -71,10 +71,6 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 ## completions
 fpath=(/opt/homebrew/zsh-completions $fpath)
 
-## rbenv init
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-# eval "$(rbenv init -)"
-
 ## display some stuff when the shell starts
 print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}
 ${terminfo[smul]}MACH:\t$MACHTYPE${terminfo[rmul]}
