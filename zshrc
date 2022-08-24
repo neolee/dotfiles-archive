@@ -59,6 +59,9 @@ alias -g '.....'='../../../..'
  
 # hash -d mrp='/Users/neo/Code/Repo/mrp'
 
+## switch to gnu grep (from homebrew)
+export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+
 ## time format
 TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 'avg shared (code):         %X KB'$'\n'\

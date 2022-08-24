@@ -31,7 +31,7 @@ export NPM_LOCAL_BIN="./node_modules/.bin"
 export DSCL_TOOLS="$HOME/Code/Repo/ds-cmdline/tools"
 export USER_TOOLS="$NPM_LOCAL_BIN:$DSCL_TOOLS"
 
-export PATH="$HOME/.local/bin:$GRAAL_HOME/bin:$CARGO_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$USER_TOOLS:$PATH"
+export PATH="$USER_TOOLS:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$GRAAL_HOME/bin:$CARGO_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$PATH"
 
 ## for graalvm's llvm toolchain
 export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
@@ -69,4 +69,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"
 export INCLUDE_PATH="INCLUDE_PATH:$(brew --prefix)/include"
-
