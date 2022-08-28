@@ -15,8 +15,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 
 # select theme
 # antigen theme denysdovhan/spaceship-prompt
-source $HOME/.powerlevel9k
-antigen theme powerlevel9k/powerlevel9k
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
+# antigen theme powerlevel9k/powerlevel9k && [[ ! -f $HOME/.p9k.zsh ]] || source $HOME/.p9k.zsh
+# antigen theme romkatv/powerlevel10k && [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 # tell antigen that you're done
 antigen apply
