@@ -15,9 +15,6 @@ export INCLUDE_PATH="$INCLUDE_PATH:$HOMEBREW_PREFIX/include"
 export EDITOR="/usr/local/bin/mate -w"
 export SVN_EDITOR="/usr/local/bin/mate -w"
 export LESSEDIT="/usr/local/bin/mate -l %lm %f"
-# export EDITOR="/usr/local/bin/subl -w"
-# export SVN_EDITOR="/usr/local/bin/subl -w"
-# export LESSEDIT="/usr/local/bin/subl %f"
 
 ## environment variables
 export ANDROID="$HOME/Library/Android/sdk"
@@ -76,9 +73,14 @@ export PATH="$USER_TOOLS:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cabal/bin:$H
 
 ### term things
 
+## znap
+source ~/.znap/zsh-snap/znap.zsh
+source ~/.znap/prezto/init.zsh
+source $HOME/.znaprc
+
 ## antigen
-source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
-antigen init $HOME/.antigenrc
+# source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+# antigen init $HOME/.antigenrc
 
 ## zinit
 # source $HOMEBREW_PREFIX/opt/zinit/zinit.zsh
@@ -124,7 +126,6 @@ alias es="$HOMEBREW_PREFIX/bin/emacs --daemon"
 alias esquit="$HOMEBREW_PREFIX/bin/emacsclient -e '(kill-emacs)'"
 alias ec="$HOMEBREW_PREFIX/bin/emacsclient-wrapper"
 alias e="mate"
-# alias e="subl -n"
 
 # misc
 alias u8="unicorn -p 8000"

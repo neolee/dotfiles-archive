@@ -1,28 +1,91 @@
-setopt promptsubst
+# setopt promptsubst
+#
+# zinit snippet OMZL::git.zsh
+#
+# zinit ice atload"unalias grv"
+# zinit snippet OMZP::git
+#
+# zinit for OMZL::prompt_info_functions.zsh OMZT::gnzh
+#
+# zinit snippet OMZP::colored-man-pages
+#
+# zinit ice as"completion"
+# zinit snippet OMZP::docker/_docker
+#
+# zinit ice atinit"zicompinit; zicdreplay"
+# zinit light zdharma-continuum/fast-syntax-highlighting
+#
+# zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+# zinit light sindresorhus/pure
+#
+# zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-history-substring-search
+#
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+#
+# autoload -Uz compinit
+# compinit
 
-zinit snippet OMZL::git.zsh
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+ blockf \
+    zsh-users/zsh-completions
 
-zinit ice atload"unalias grv"
-zinit snippet OMZP::git
+zinit wait lucid for \
+    zdharma-continuum/zsh-unique-id \
+    OMZL::git.zsh \
+ atload"unalias grv" \
+    OMZP::git
 
-zinit for OMZL::prompt_info_functions.zsh OMZT::gnzh
+# prompt themes #1-8
+PS1="Loading..."
 
-zinit snippet OMZP::colored-man-pages
+zinit lucid load'![[ $THEME = 1 ]]' unload'![[ $THEME != 1 ]]' \
+ atload'!promptinit; typeset -g PSSHORT=0; prompt sprint3 yellow red green blue' \
+ nocd for \
+    psprint/zprompts
 
-zinit ice as"completion"
-zinit snippet OMZP::docker/_docker
+zinit lucid load'![[ $THEME = 2 ]]' unload'![[ $THEME != 2 ]]' nocd for \
+    halfo/lambda-mod-zsh-theme
 
-zinit ice atinit"zicompinit; zicdreplay"
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit lucid load'![[ $THEME = 3 ]]' unload'![[ $THEME != 3 ]]' nocd for \
+    ergenekonyigit/lambda-gitster
 
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+zinit lucid load'![[ $THEME = 4 ]]' unload'![[ $THEME != 4 ]]' \
+ atload'!geometry::prompt' nocd \
+ atinit'GEOMETRY_COLOR_DIR=63 GEOMETRY_PATH_COLOR=63' for \
+    geometry-zsh/geometry
 
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-history-substring-search
+zinit lucid load'![[ $THEME = 5 ]]' unload'![[ $THEME != 5 ]]' \
+ pick"/dev/null" multisrc"{async,pure}.zsh" atload'!prompt_pure_precmd' nocd for \
+    sindresorhus/pure
 
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zinit lucid load'![[ $THEME = 6 ]]' unload'![[ $THEME != 6 ]]' \
+ atload'!_agkozak_precmd' nocd atinit'AGKOZAK_FORCE_ASYNC_METHOD=subst-async' for \
+    agkozak/agkozak-zsh-theme
 
-autoload -Uz compinit
-compinit
+zinit load'![[ $THEME = 7 ]]' unload'![[ $THEME != 7 ]]' \
+ compile"{zinc_functions/*,segments/*,zinc.zsh}" nocompletions \
+ atload'!prompt_zinc_setup; prompt_zinc_precmd' nocd for \
+    robobenklein/zinc
+
+zinit lucid load'![[ $THEME = 8 ]]' unload'![[ $THEME != 8 ]]' \
+ atload'!_zsh_git_prompt_precmd_hook' nocd for \
+    woefe/git-prompt.zsh
+
+zinit wait lucid for \
+    hlissner/zsh-autopair \
+    marlonrichert/zsh-autocomplete
+
+zinit wait"1" lucid for \
+    psprint/zsh-navigation-tools \
+ atinit'zstyle ":history-search-multi-word" page-size "7"' \
+    zdharma-continuum/history-search-multi-word \
+ atinit"local zew_word_style=whitespace" \
+    psprint/zsh-editing-workbench
+
+THEME=5

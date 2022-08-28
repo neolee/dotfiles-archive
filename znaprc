@@ -1,0 +1,15 @@
+znap prompt sindresorhus/pure
+
+znap source marlonrichert/zsh-autocomplete
+znap source marlonrichert/zsh-edit
+znap source marlonrichert/zsh-hist
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+znap source zsh-users/zsh-history-substring-search
+
+znap source ohmyzsh/ohmyzsh lib/git
+znap source ohmyzsh/ohmyzsh plugins/{git,brew,command-not-found,pip,docker}
+znap source sorin-ionescu/prezto modules/{environment,history,python,ssh}
+
+znap source marlonrichert/zcolors
+znap eval zcolors "zcolors ${(q)LS_COLORS}"
