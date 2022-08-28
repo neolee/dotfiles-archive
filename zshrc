@@ -74,11 +74,20 @@ source $HOME/.cargo/env
 # other stuffs
 export PATH="$USER_TOOLS:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$GRAAL_HOME/bin:$GO_HOME/libexec/bin:$GOBIN:$ANDROID/platform-tools:$ANDROID/tools:$PATH"
 
-## antigen init and config
+### term things
+
+## antigen
 source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
-### term things
+## zinit
+# source $HOMEBREW_PREFIX/opt/zinit/zinit.zsh
+# autoload -Uz _zinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
+# source $HOME/.zinitrc
+
+## zsh completions
+fpath=($HOMEBREW_PREFIX/zsh-completions $fpath)
 
 ## customized command alias
 alias grep='grep --color'
@@ -145,9 +154,6 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 'max memory:                %M KB'$'\n'\
 'page faults from disk:     %F'$'\n'\
 'other page faults:         %R'
-
-## completions
-fpath=(/opt/homebrew/zsh-completions $fpath)
 
 ## display some stuff when the shell starts
 print "${terminfo[smul]}OS:\t$OSTYPE${terminfo[rmul]}

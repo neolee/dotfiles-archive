@@ -1,0 +1,28 @@
+setopt promptsubst
+
+zinit snippet OMZL::git.zsh
+
+zinit ice atload"unalias grv"
+zinit snippet OMZP::git
+
+zinit for OMZL::prompt_info_functions.zsh OMZT::gnzh
+
+zinit snippet OMZP::colored-man-pages
+
+zinit ice as"completion"
+zinit snippet OMZP::docker/_docker
+
+zinit ice atinit"zicompinit; zicdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-history-substring-search
+
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+autoload -Uz compinit
+compinit
