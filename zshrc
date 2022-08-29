@@ -88,15 +88,15 @@ source $HOME/.znaprc
 # (( ${+_comps} )) && _comps[zinit]=_zinit
 # source $HOME/.zinitrc
 
-## zsh completions
-fpath=($HOMEBREW_PREFIX/zsh-completions $fpath)
+## thefuck
+eval $(thefuck --alias)
 
 ## customized command alias
 alias grep='grep --color'
 alias rm='rm -i'
-alias ls='ls -Gw'
-alias l='ls -Gwl'
-alias ll='ls -Gwla'
+# alias ls='ls -Gw'
+# alias l='ls -Gwl'
+# alias ll='ls -Gwla'
 alias psgrep='ps -all -A | grep'
 alias diff='colordiff'
 alias x='exit'
