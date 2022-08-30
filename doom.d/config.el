@@ -125,7 +125,7 @@
 (map! "C-z" nil)
 (setq doom-localleader-alt-key "C-z")
 
-;; smartparens - disabled when lispy mode activated
+;; smartparens (disabled while lispy being activated)
 (map!
  (:after smartparens
   (:map smartparens-mode-map
@@ -145,8 +145,8 @@
 
 ;; buffer-move
 (map!
- (:map buffer-move-map
-  [C-s-up]       #'buf-move-up
-  [C-s-down]     #'buf-move-down
-  [C-s-left]     #'buf-move-left
-  [C-s-right]    #'buf-move-right))
+ [C-s-up]        #'buf-move-up
+ [C-s-down]      #'buf-move-down
+ [C-s-left]      #'buf-move-left
+ [C-s-right]     #'buf-move-right
+ )

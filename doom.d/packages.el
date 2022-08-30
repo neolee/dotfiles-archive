@@ -49,4 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! buffer-move)
+;; FIXME Disable compiling on buffer-move due to the following issue:
+;; https://github.com/lukhas/buffer-move/issues/18
+(package! buffer-move :recipe (:build (:not compile)))
