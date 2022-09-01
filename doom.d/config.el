@@ -45,7 +45,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Code/Org/")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -121,6 +121,49 @@
         lsp-headerline-breadcrumb-enable nil
         lsp-headerline-breadcrumb-segments '(symbols)))
 
+;; org-babel
+(setq org-babel-default-header-args:jupyter-python '((:async . "no")
+                                                    (:session . "jp")
+                                                    (:kernel . "wop")))
+
+(after! org
+  (require 'org-tempo)
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((emacs-lisp . t)
+                                 (python . t)
+                                 (shell . t)
+                                 (latex . t)
+                                 (sql . t)
+                                 (sqlite . t)
+                                 (calc . t)
+                                 (jupyter . t))))
+
+(after! org-src
+  (dolist (lang '(python jupyter))
+    (cl-pushnew (cons (format "jupyter-%s" lang) lang)
+                org-src-lang-modes :key #'car))
+  )
+
+;; FIXME the ansi-color text issue in org-babel result block.
+;; Source: https://github.com/nnicandro/emacs-jupyter/issues/376
+;; Here is the function that jupyter-mime.el relies on,
+;; found in an older ansi-color.el in an older emacs distribution.
+(defun ansi-color--find-face (codes)
+  "Return the face corresponding to CODES."
+  ;; Sort the codes in ascending order to guarantee that "bold" comes before
+  ;; any of the colors.  This ensures that `ansi-color-bold-is-bright' is
+  ;; applied correctly.
+  (let (faces bright (codes (sort (copy-sequence codes) #'<)))
+    (while codes
+      (when-let ((face (ansi-color-get-face-1 (pop codes) bright)))
+        (when (and ansi-color-bold-is-bright (eq face 'ansi-color-bold))
+          (setq bright t))
+        (push face faces)))
+    ;; Avoid some long-lived conses in the common case.
+    (if (cdr faces)
+	(nreverse faces)
+      (car faces))))
+
 ;; My keybindings without evil
 (map! "C-z" nil)
 (setq doom-localleader-alt-key "C-z")
@@ -150,3 +193,23 @@
  [C-s-left]      #'buf-move-left
  [C-s-right]     #'buf-move-right
  )
+
+;; emacs-jupyter
+(use-package! jupyter
+  :defer t
+  :init
+  (map! :after python
+        :map python-mode-map
+        :localleader
+        (:prefix ("j" . "jupyter")
+         :desc "Run REPL"          "o" #'jupyter-run-repl
+         :desc "Eval funciton"     "f" #'jupyter-eval-defun
+         :desc "Eval buffer"       "b" #'jupyter-eval-buffer
+         :desc "Eval region"       "r" #'jupyter-eval-region
+         :desc "Restart REPL"      "R" #'jupyter-repl-restart-kernel
+         :desc "Interrupt REPL"    "i" #'jupyter-repl-interrup-kernel
+         :desc "Scratch buffer"    "s" #'jupyter-repl-scratch-buffer
+         :desc "Remove overlays"   "O" #'jupyter-eval-remove-overlays
+         :desc "Eval string"       "w" #'jupyter-eval-string
+         :desc "Inspect at point"  "d" #'jupyter-inspect-at-point
+         )))
