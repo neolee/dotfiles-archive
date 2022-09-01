@@ -136,7 +136,13 @@
                                  (sql . t)
                                  (sqlite . t)
                                  (calc . t)
-                                 (jupyter . t))))
+                                 (jupyter . t)))
+  (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
+                                "xelatex -interaction nonstopmode %f"))
+  (setq org-latex-default-packages-alist
+        (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+  (setq org-agenda-files (directory-files-recursively org-directory "\\.org$"))
+  )
 
 (after! org-src
   (dolist (lang '(python jupyter))
@@ -163,6 +169,23 @@
     (if (cdr faces)
 	(nreverse faces)
       (car faces))))
+
+;; spell-fu
+(after! spell-fu
+  (defun +spell-fu-register-dictionary (lang)
+    "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
+    ;; Add the dictionary
+    (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))
+    (let ((personal-dict-file (expand-file-name (format "aspell.%s.pws" lang) doom-user-dir)))
+      ;; Create an empty personal dictionary if it doesn't exists
+      (unless (file-exists-p personal-dict-file) (write-region "" nil personal-dict-file))
+      ;; Add the personal dictionary
+      (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
+
+  (add-hook 'spell-fu-mode-hook
+            (lambda ()
+              (+spell-fu-register-dictionary "en")
+              )))
 
 ;; My keybindings without evil
 (map! "C-z" nil)
