@@ -121,10 +121,13 @@
         lsp-headerline-breadcrumb-enable nil
         lsp-headerline-breadcrumb-segments '(symbols)))
 
+;; :lang zig +lsp
+(setq lsp-zig-zls-executable "~/Code/Repo/zls/zig-out/bin/zls")
+
 ;; org-babel
 (setq org-babel-default-header-args:jupyter-python '((:async . "no")
-                                                    (:session . "jp")
-                                                    (:kernel . "wop")))
+                                                     (:session . "jp")
+                                                     (:kernel . "wop")))
 
 (after! org
   (require 'org-tempo)
@@ -182,10 +185,9 @@
       ;; Add the personal dictionary
       (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
 
-  (add-hook 'spell-fu-mode-hook
-            (lambda ()
-              (+spell-fu-register-dictionary "en")
-              )))
+  (add-hook! 'spell-fu-mode-hook
+    (+spell-fu-register-dictionary "en")
+    ))
 
 ;; My keybindings without evil
 (map! "C-z" nil)
@@ -218,9 +220,7 @@
  )
 
 ;; emacs-jupyter
-(use-package! jupyter
-  :defer t
-  :init
+(after! jupyter
   (map! :after python
         :map python-mode-map
         :localleader
