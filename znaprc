@@ -12,9 +12,6 @@ znap source ohmyzsh/ohmyzsh lib/git
 znap source ohmyzsh/ohmyzsh plugins/{git,command-not-found,z,brew,pip,docker}
 znap source sorin-ionescu/prezto modules/{environment,history,python,ssh}
 
-znap source marlonrichert/zcolors
-znap eval zcolors "zcolors ${(q)LS_COLORS}"
-
 znap source MohamedElashri/exa-zsh
 znap source tom-auger/cmdtime
 znap source greymd/docker-zsh-completion

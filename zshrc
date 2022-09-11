@@ -92,15 +92,17 @@ source $HOME/.znaprc
 eval $(thefuck --alias)
 
 ## customized command alias
-alias grep='grep --color'
-alias rm='rm -i'
+alias x='exit'
 # alias ls='ls -Gw'
 # alias l='ls -Gwl'
 # alias ll='ls -Gwla'
-alias psgrep='ps -all -A | grep'
-alias diff='colordiff'
-alias x='exit'
+alias rm='rm -i'
 alias git='git --no-pager'
+alias grep='grep --color'
+alias egrep='ggrep -E'
+
+# alias psgrep='ps -all -A | grep'
+# alias diff='colordiff'
 
 # remote ssh shortcuts
 alias zion='ssh neo@10.0.0.2 -p 12381'
