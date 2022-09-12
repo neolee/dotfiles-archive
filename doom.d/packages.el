@@ -53,4 +53,5 @@
 ;; https://github.com/lukhas/buffer-move/issues/18
 (package! buffer-move :recipe (:build (:not compile)))
 
-(package! org-fragtog)
+(package! xenops)
+;; (package! org-fragtog)

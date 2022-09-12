@@ -182,8 +182,23 @@
 	(nreverse faces)
       (car faces))))
 
+(use-package! xenops
+  :hook (latex-mode . xenops-mode)
+  :hook (LaTeX-mode . xenops-mode)
+  :hook (org-mode . xenops-mode)
+  :defer t
+  :config
+  (map! :map xenops-mode-map
+        :n "RET" #'xenops-dwim)
+  (setq xenops-cache-directory (concat doom-cache-dir "xenops/")
+        xenops-reveal-on-entry t
+        xenops-math-latex-process 'dvisvgm
+        xenops-math-image-scale-factor 1.5
+        )
+  )
+
 ;; org-fratog
-(add-hook! 'org-mode-hook #'org-fragtog-mode)
+;; (add-hook! 'org-mode-hook #'org-fragtog-mode)
 
 ;; spell-fu
 (after! spell-fu
