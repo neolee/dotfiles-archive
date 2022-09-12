@@ -2,9 +2,14 @@ bambook
 coderush
 dabbrev
 dired
+eval
+flyspell
+ido
 init
 js
 jupyter
+kbd
 orbis
+prog
 sexp
 src

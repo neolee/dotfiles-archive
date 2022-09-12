@@ -94,34 +94,48 @@
  scroll-margin 2
  )
 
-;; Enable time in the mode-line
-(display-time-mode t)
-
-;; Display battery info on laptops
-(unless (string-match-p "^Power N/A" (battery))
-  (display-battery-mode t))
-
-;; Iterate through CamelCase words
 (global-subword-mode t)
 
-;; Split horizontally to right, vertically below the current window.
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
+;; doom-modeline tweak
+;; Time on modeline
+(after! doom-modeline
+  (setq display-time-string-forms
+        '((propertize (concat " 🕘 " 24-hours ":" minutes))))
+  (display-time-mode t)
+  ;; Add padding to the right
+  (doom-modeline-def-modeline 'main
+    '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+    '(misc-info minor-modes checker input-method buffer-encoding major-mode process vcs "   ")))
 
-;; Tweak LSP UI
+;; Battery info on modeline (only on laptops)
+(after! doom-modeline
+  (let ((battery-str (battery)))
+    (unless (or (equal "Battery status not available" battery-str)
+                (string-match-p (regexp-quote "unknown") battery-str)
+                (string-match-p (regexp-quote "N/A") battery-str))
+      (display-battery-mode t))))
+
+;; Customization
+(after! doom-modeline
+  (setq doom-modeline-bar-width 4
+        doom-modeline-major-mode-icon t
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-buffer-file-name-style 'auto))
+
+;; lsp-ui
 (after! lsp-ui
   (setq lsp-ui-sideline-enable t
         lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics t
         lsp-ui-sideline-show-hover nil
         lsp-log-io nil
-        lsp-lens-enable t ; not working properly with ccls!
+        lsp-lens-enable t               ; not working properly with ccls!
         lsp-diagnostics-provider :auto
         lsp-enable-symbol-highlighting t
         lsp-headerline-breadcrumb-enable nil
         lsp-headerline-breadcrumb-segments '(symbols)))
 
-;; :lang zig +lsp
+;; zig +lsp
 (setq lsp-zig-zls-executable "~/Code/Repo/zls/zig-out/bin/zls")
 
 ;; org-mode tweak
@@ -182,6 +196,7 @@
 	(nreverse faces)
       (car faces))))
 
+;; xenops
 (use-package! xenops
   :hook (latex-mode . xenops-mode)
   :hook (LaTeX-mode . xenops-mode)
@@ -216,7 +231,7 @@
     (+spell-fu-register-dictionary "en")
     ))
 
-;; My keybindings without evil
+;; Keybindings without evil
 (map! "C-z" nil)
 (setq doom-localleader-alt-key "C-z")
 
