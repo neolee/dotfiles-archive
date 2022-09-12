@@ -124,6 +124,15 @@
 ;; :lang zig +lsp
 (setq lsp-zig-zls-executable "~/Code/Repo/zls/zig-out/bin/zls")
 
+;; org-mode tweak
+(after! org
+  (setq org-latex-packages-alist
+        '(("" "ctex" t)
+          ))
+  (setq org-latex-hyperref-template
+        "\\hypersetup{linktoc=all,colorlinks=true,urlcolor=blue,linkcolor=blue}")
+  )
+
 ;; org-babel
 (setq org-babel-default-header-args:jupyter-python '((:async . "no")
                                                      (:session . "jp")
@@ -172,6 +181,9 @@
     (if (cdr faces)
 	(nreverse faces)
       (car faces))))
+
+;; org-fratog
+(add-hook! 'org-mode-hook #'org-fragtog-mode)
 
 ;; spell-fu
 (after! spell-fu
