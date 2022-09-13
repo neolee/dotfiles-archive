@@ -144,6 +144,12 @@
         doom-modeline-major-mode-color-icon t
         doom-modeline-buffer-file-name-style 'auto))
 
+;; ace-window
+(custom-set-faces!
+  '(aw-leading-char-face
+    :foreground "white" :background "red"
+    :weight bold :height 1.5 :box (:line-width 10 :color "red")))
+
 ;; lsp-ui
 (after! lsp-ui
   (setq lsp-ui-sideline-enable t
