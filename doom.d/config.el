@@ -37,7 +37,29 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+
+;; (setq +light-theme 'doom-one-light
+;;       +dark-theme 'doom-one)
+;; (setq +light-theme 'doom-material
+;;       +dark-theme 'doom-material-dark)
+;; (setq +light-theme 'doom-monokai-pro
+;;       +dark-theme 'doom-monokai-pro)
+(setq +light-theme 'doom-ayu-light
+      +dark-theme 'doom-ayu-mirage)
+
+(defun +apply-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme +light-theme t))
+    ('dark (load-theme +dark-theme t))))
+
+(add-hook! 'ns-system-appearance-change-functions '+apply-theme)
+
+(doom-themes-treemacs-config)
+(doom-themes-org-config)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
